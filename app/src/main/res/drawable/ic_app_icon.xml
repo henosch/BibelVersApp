@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <path
+        android:fillColor="#f4f7ff"
+        android:pathData="M8,18h92v72h-92z" />
+
+    <path
+        android:fillColor="#d6e2fb"
+        android:pathData="M18,24h72v60h-72z" />
+
+    <path
+        android:fillColor="#ffffff"
+        android:pathData="M54,28l24,16v6h-48v-6z" />
+
+    <path
+        android:fillColor="#7aa7f9"
+        android:pathData="M28,36h52v40h-52z" />
+
+    <!-- Cross on book -->
+    <path
+        android:fillColor="#ffffff"
+        android:pathData="M50,42h8v24h-8z" />
+    <path
+        android:fillColor="#ffffff"
+        android:pathData="M42,52h24v8h-24z" />
+
+    <path
+        android:fillColor="#4a6fb3"
+        android:pathData="M8,18h92v12h-92z" />
+</vector>

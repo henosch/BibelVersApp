@@ -1,0 +1,11 @@
+/.gradle/
+/.gradle-tmp/
+/.idea/
+/local.properties
+/build/
+/app/build/
+/.DS_Store
+*.log
+*.iml
+repo.git/
+git_publish.sh
