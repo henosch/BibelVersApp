@@ -11,7 +11,17 @@ Eine kleine Android-App, die die tägliche Losung (Herrnhuter Losungen) anzeigt,
 
 ## Build
 ```
-./gradlew assembleDebug
+./build.sh
+```
+
+Vor dem ersten Lauf prüfen, ob folgende Tools installiert sind (macOS: Homebrew wird automatisch genutzt):
+- Temurin JDK 17
+- Android SDK (Pfad via ANDROID_HOME / ANDROID_SDK_ROOT oder auto-generierte `local.properties`)
+- Gradle Wrapper (liegt im Repo)
+
+Abhängigkeiten prüfen & Build starten:
+```
+./build.sh
 ```
 APK liegt danach unter `app/build/outputs/apk/debug/app-debug.apk`.
 
