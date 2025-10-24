@@ -10,14 +10,6 @@
         </shape>
     </item>
 
-    <!-- Upper blue stripe -->
-    <item android:gravity="top">
-        <shape android:shape="rectangle">
-            <size android:height="40dp" />
-            <solid android:color="#993a66c9" />
-        </shape>
-    </item>
-
     <!-- Lower blue stripe -->
     <item android:gravity="bottom">
         <shape android:shape="rectangle">

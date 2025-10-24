@@ -13,16 +13,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="0dp"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:contentDescription="@string/settings_content_description"
         android:padding="8dp"
         android:src="@drawable/ic_settings"
         android:tint="#1a237e"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="@id/dateTextView"
-        app:layout_constraintBaseline_toBaselineOf="@id/dateTextView" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/greetingTextView"
@@ -51,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="0dp"
         android:background="@drawable/bg_date_chip"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
