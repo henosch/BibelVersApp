@@ -50,6 +50,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, SettingsActivity::class.java))
         }
 
+        binding.dateTextView.setOnClickListener {
+            returnToToday()
+        }
+
         displayVerseForDate(currentDate.time)
         prefetchYear(currentDate.get(Calendar.YEAR))
         prefetchYear(currentDate.get(Calendar.YEAR) + 1)
@@ -100,6 +104,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun showNextDay() {
         currentDate.add(Calendar.DAY_OF_YEAR, 1)
+        prefetchYear(currentDate.get(Calendar.YEAR))
+        displayVerseForDate(currentDate.time)
+    }
+
+    private fun returnToToday() {
+        currentDate.time = Date()
         prefetchYear(currentDate.get(Calendar.YEAR))
         displayVerseForDate(currentDate.time)
     }
