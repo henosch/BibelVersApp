@@ -10,7 +10,7 @@ Die Kontaktdaten des verantwortlichen Entwicklers finden Sie im Google Play Stor
 
 2. ÜBERSICHT
 
-BibelVers ist eine kostenlose Android-App, die täglich die Herrnhuter Losung samt Lehrtext anzeigt und Livestreams der Klagemauer (Kotel) in Jerusalem bereitstellt. Die App wurde entwickelt, um Nutzern einen täglichen geistlichen Impuls zu bieten.
+BibelVers ist eine kostenlose Android-App, die täglich die Herrnhuter Losung samt Lehrtext anzeigt. Die Hauptfunktion der App ist die Anzeige der täglichen Losungen, die nach einem einmaligen jährlichen Update vollständig offline verfügbar sind. Optional bietet die App zusätzlich Livestreams der Klagemauer (Kotel) in Jerusalem als Zusatzfunktion.
 
 3. KEINE DATENERFASSUNG
 
@@ -21,9 +21,9 @@ Diese App erhebt, speichert oder verarbeitet KEINE personenbezogenen Daten der N
 Die App benötigt folgende Berechtigungen:
 
 a) Internetverbindung (INTERNET)
-   - Zweck: Laden der aktuellen Losungs- und Lehrtexte sowie Anzeige der Livestreams
+   - Zweck: Einmaliges jährliches Update der Losungs- und Lehrtexte sowie optionale Anzeige der Livestreams
    - Die App lädt Inhalte ausschließlich über verschlüsselte HTTPS-Verbindungen
-   - Offline-Funktion: Bei fehlender Internetverbindung greift die App auf lokal gespeicherte Fallback-Daten zurück
+   - Offline-Funktion: Die Losungen funktionieren vollständig offline nach dem jährlichen Update. Nur die optionale Livestream-Funktion benötigt eine aktive Internetverbindung
 
 b) Benachrichtigungen (POST_NOTIFICATIONS)
    - Zweck: Optional können Sie eine tägliche Erinnerung zur gewünschten Uhrzeit aktivieren
@@ -34,14 +34,17 @@ b) Benachrichtigungen (POST_NOTIFICATIONS)
 
 Die App lädt folgende Inhalte von externen Quellen:
 
-a) Herrnhuter Losungen
+a) Herrnhuter Losungen (Hauptfunktion)
    - Quelle: Offizielle API/Webseite der Herrnhuter Brüdergemeine
-   - Inhalt: Tageslosung und Lehrtext
+   - Inhalt: Tageslosung und Lehrtext für das gesamte Jahr
+   - Häufigkeit: Einmaliges Update pro Jahr, danach vollständig offline verfügbar
    - Es werden keine personenbezogenen Daten an diese Quelle übermittelt
 
-b) Livestreams der Kotel
+b) Livestreams der Kotel (Optionale Zusatzfunktion)
    - Quelle: Verschiedene öffentlich zugängliche Livestream-Anbieter in Jerusalem
    - Inhalt: Videostreams der Klagemauer
+   - Hinweis: Dies ist eine optionale Zusatzfunktion, nicht die Hauptfunktion der App
+   - Benötigt aktive Internetverbindung während der Nutzung
    - Die Nutzung der Streams unterliegt den Datenschutzbestimmungen der jeweiligen Anbieter
    - Es werden keine personenbezogenen Daten von unserer App an die Stream-Anbieter übermittelt
 
