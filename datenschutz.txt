@@ -1,0 +1,95 @@
+DATENSCHUTZERKLÄRUNG
+
+BibelVers – Losung & Kotel Stream
+
+Stand: Oktober 2025
+
+1. VERANTWORTLICHER
+
+Die Kontaktdaten des verantwortlichen Entwicklers finden Sie im Google Play Store auf der App-Seite von BibelVers.
+
+2. ÜBERSICHT
+
+BibelVers ist eine kostenlose Android-App, die täglich die Herrnhuter Losung samt Lehrtext anzeigt und Livestreams der Klagemauer (Kotel) in Jerusalem bereitstellt. Die App wurde entwickelt, um Nutzern einen täglichen geistlichen Impuls zu bieten.
+
+3. KEINE DATENERFASSUNG
+
+Diese App erhebt, speichert oder verarbeitet KEINE personenbezogenen Daten der Nutzer. Es werden keine Analysetools, Tracking-Mechanismen oder Werbenetzwerke eingesetzt. Die App funktioniert vollständig lokal auf Ihrem Gerät.
+
+4. BERECHTIGUNGEN UND IHRE VERWENDUNG
+
+Die App benötigt folgende Berechtigungen:
+
+a) Internetverbindung (INTERNET)
+   - Zweck: Laden der aktuellen Losungs- und Lehrtexte sowie Anzeige der Livestreams
+   - Die App lädt Inhalte ausschließlich über verschlüsselte HTTPS-Verbindungen
+   - Offline-Funktion: Bei fehlender Internetverbindung greift die App auf lokal gespeicherte Fallback-Daten zurück
+
+b) Benachrichtigungen (POST_NOTIFICATIONS)
+   - Zweck: Optional können Sie eine tägliche Erinnerung zur gewünschten Uhrzeit aktivieren
+   - Diese Funktion ist standardmäßig deaktiviert und muss von Ihnen bewusst aktiviert werden
+   - Die Benachrichtigungen werden ausschließlich lokal auf Ihrem Gerät erstellt
+
+5. EXTERNE DATENQUELLEN
+
+Die App lädt folgende Inhalte von externen Quellen:
+
+a) Herrnhuter Losungen
+   - Quelle: Offizielle API/Webseite der Herrnhuter Brüdergemeine
+   - Inhalt: Tageslosung und Lehrtext
+   - Es werden keine personenbezogenen Daten an diese Quelle übermittelt
+
+b) Livestreams der Kotel
+   - Quelle: Verschiedene öffentlich zugängliche Livestream-Anbieter in Jerusalem
+   - Inhalt: Videostreams der Klagemauer
+   - Die Nutzung der Streams unterliegt den Datenschutzbestimmungen der jeweiligen Anbieter
+   - Es werden keine personenbezogenen Daten von unserer App an die Stream-Anbieter übermittelt
+
+6. LOKALE DATENSPEICHERUNG
+
+Die App speichert folgende Daten ausschließlich lokal auf Ihrem Gerät:
+
+- Ihre persönlichen Einstellungen (z.B. gewählte Benachrichtigungszeit)
+- Fallback-Dateien mit Losungstexten für die Offline-Nutzung
+- Cache für bereits geladene Inhalte
+
+Diese Daten werden nicht an uns oder Dritte übermittelt und verbleiben auf Ihrem Gerät. Bei Deinstallation der App werden alle lokal gespeicherten Daten automatisch gelöscht.
+
+7. KEINE WEITERGABE VON DATEN
+
+Da die App keine personenbezogenen Daten erhebt, erfolgt auch keine Weitergabe von Daten an Dritte.
+
+8. KEINE WERBUNG UND KEINE NUTZERKONTEN
+
+Die App enthält:
+- Keine Werbung
+- Keine In-App-Käufe
+- Keine Registrierungs- oder Login-Funktion
+- Keine Social-Media-Integration
+
+9. SICHERHEIT
+
+Obwohl keine personenbezogenen Daten verarbeitet werden, sind alle Netzwerkverbindungen der App über HTTPS verschlüsselt, um die Integrität der geladenen Inhalte zu gewährleisten.
+
+10. RECHTE DER NUTZER
+
+Da die App keine personenbezogenen Daten erhebt oder verarbeitet, sind die typischen Betroffenenrechte nach DSGVO (Auskunft, Berichtigung, Löschung, etc.) nicht anwendbar.
+
+11. KINDER
+
+Die App richtet sich an alle Altersgruppen und enthält keine jugendgefährdenden Inhalte. Da keine personenbezogenen Daten erhoben werden, sind auch keine besonderen Maßnahmen zum Schutz von Kindern erforderlich.
+
+12. ÄNDERUNGEN DIESER DATENSCHUTZERKLÄRUNG
+
+Wir behalten uns vor, diese Datenschutzerklärung anzupassen, falls dies aufgrund rechtlicher Änderungen oder Änderungen der App-Funktionalität erforderlich wird. Die aktuelle Version ist stets über den Google Play Store einsehbar.
+
+13. KONTAKT
+
+Bei Fragen zum Datenschutz oder zur App können Sie uns über die im Google Play Store hinterlegten Kontaktdaten erreichen.
+
+14. ZUSÄTZLICHE INFORMATIONEN FÜR DEN GOOGLE PLAY STORE
+
+Datenerhebung: Keine
+Datenweitergabe: Keine
+Datensicherheit: Alle Netzwerkverbindungen sind über HTTPS verschlüsselt
+Datenlöschung: Erfolgt automatisch bei Deinstallation der App

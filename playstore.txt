@@ -1,0 +1,19 @@
+BibelVers – Losung & Kotel Stream
+
+Kurzbeschreibung:
+Tägliche Herrnhuter Losung lesen und Livestreams von der Kotel erleben.
+
+Ausführliche Beschreibung:
+BibelVers schenkt dir jeden Tag einen Moment der Besinnung. Die App lädt automatisch die aktuelle Herrnhuter Losung samt Lehrtext und zeigt dir mehrere Livestreams der Klagemauer (Kotel) in Jerusalem. Eine optionale Erinnerung erinnert dich zur gewünschten Tageszeit an den geistlichen Impuls. Die App funktioniert dank lokaler Fallback-Datei auch offline.
+
+Highlights:
+• Offizielle Losungs- und Lehrtexte der Herrnhuter Brüdergemeine
+• Livestream-Auswahl verschiedener Kotel-Kameras in Jerusalem
+• Shabbat-Hinweis sowie Offline-Unterstützung
+• Optionale Push-Benachrichtigung zur Wunschzeit
+• Keine Werbung, keine Nutzerkonten, keine Datenerfassung
+
+Technische Hinweise:
+• Funktioniert ab Android 8.0 (API 26)
+• Datenzugriff ausschließlich über HTTPS
+• App ist kostenlos, ohne In-App-Käufe oder Werbung
