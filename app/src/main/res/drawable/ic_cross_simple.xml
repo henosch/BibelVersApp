@@ -6,8 +6,8 @@
     android:viewportHeight="200">
     <path
         android:fillColor="@color/cross_fill"
-        android:pathData="M90,53.85h20v146.15h-20z" />
+        android:pathData="M94,20h12v160h-12z" />
     <path
         android:fillColor="@color/cross_fill"
-        android:pathData="M40,107.69h120v18.46h-120z" />
+        android:pathData="M52,72h96v12h-96z" />
 </vector>

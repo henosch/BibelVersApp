@@ -5,31 +5,49 @@
     android:viewportWidth="108"
     android:viewportHeight="108">
 
+    <!-- Background -->
     <path
-        android:fillColor="#f4f7ff"
-        android:pathData="M8,18h92v72h-92z" />
+        android:fillColor="#b9c9ef"
+        android:pathData="M4,4h100v100h-100z" />
 
+    <!-- Book cover -->
     <path
-        android:fillColor="#d6e2fb"
-        android:pathData="M18,24h72v60h-72z" />
+        android:fillColor="#1a237e"
+        android:pathData="M26,26h56v56h-56z" />
 
+    <!-- Book spine shadow -->
+    <path
+        android:fillColor="#0d47a1"
+        android:pathData="M26,26h6v56h-6z" />
+
+    <!-- Book pages -->
+    <path
+        android:fillColor="#f6dfbb"
+        android:pathData="M30,30h50v48h-50z" />
+
+    <!-- Page lines -->
+    <path
+        android:strokeColor="#b3d4ff"
+        android:strokeWidth="0.8"
+        android:pathData="M36,40h38
+                          M36,44h38
+                          M36,48h38
+                          M36,52h38
+                          M36,56h38
+                          M36,60h38
+                          M36,64h38" />
+
+    <!-- Cross with longer vertical beam -->
+    <path
+        android:fillColor="#3a66c9"
+        android:pathData="M50,38h8v36h-8z" />
+    <path
+        android:fillColor="#3a66c9"
+        android:pathData="M42,48h24v8h-24z" />
+
+    <!-- Cross highlight -->
     <path
         android:fillColor="#ffffff"
-        android:pathData="M54,28l24,16v6h-48v-6z" />
-
-    <path
-        android:fillColor="#7aa7f9"
-        android:pathData="M28,36h52v40h-52z" />
-
-    <!-- Cross on book -->
-    <path
-        android:fillColor="#ffffff"
-        android:pathData="M50,42h8v24h-8z" />
-    <path
-        android:fillColor="#ffffff"
-        android:pathData="M42,52h24v8h-24z" />
-
-    <path
-        android:fillColor="#4a6fb3"
-        android:pathData="M8,18h92v12h-92z" />
+        android:fillAlpha="0.25"
+        android:pathData="M56,38h4v40h-4z" />
 </vector>
