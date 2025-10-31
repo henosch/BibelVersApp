@@ -13,4 +13,4 @@ git_publish.sh
 # Local artifacts
 upload-keystore.jks
 *.backup
-
+command_reference.txt

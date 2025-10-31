@@ -10,9 +10,16 @@ Eine kleine Android-App, die die tägliche Losung (Herrnhuter Losungen) anzeigt,
 - Shabbat-Hinweis am Freitagabend/Samstag
 
 ## Build
-```
-./build.sh
-```
+1. Vorlage übernehmen (einmal pro Rechner):
+   ```
+   cp build.template.sh build.sh
+   chmod +x build.sh
+   ```
+   Passe `build.sh` bei Bedarf an (z. B. Keystore-Pfade) – die Datei bleibt lokal und ist in `.gitignore`.
+2. Build starten:
+   ```
+   ./build.sh
+   ```
 
 Vor dem ersten Lauf prüfen, ob folgende Tools installiert sind (macOS: Homebrew wird automatisch genutzt):
 - Temurin JDK 17
@@ -25,7 +32,9 @@ Abhängigkeiten prüfen & Build starten:
 ./scripts/update_android_sdk.sh
 
 # Debug-Build erzeugen
-./build.sh
+./build.sh debug
+# oder Release-Bundle samt Signatur
+./build.sh release
 ```
 APK liegt danach unter `app/build/outputs/apk/debug/app-debug.apk`.
 

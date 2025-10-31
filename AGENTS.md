@@ -1,36 +1,36 @@
-# Repository Guidelines
+# Richtlinien für das Repository
 
-## Project Structure & Module Organization
-- `app/src/main/java/de/henosch/bibelvers` holds the Kotlin activities, repositories, and receivers; keep feature-specific helpers nahe am Einstiegspunkt (z. B. Parsen weiterhin in `LosungRepository`).
-- Layouts, drawables, and strings live under `app/src/main/res`; name new resources with `snake_case` aligned to screen purpose (e.g., `activity_devotional.xml`).
-- Long-lived data such as the yearly Losung ZIP files reside in `app/src/main/assets`; add future years using the `Losung_<YEAR>_XML.zip` pattern so `LosungRepository.ensureYear` continues to resolve them automatically.
-- Gradle wrapper files remain in the root; use the provided structure when introducing new modules so `settings.gradle` stays in sync.
+## Projektstruktur und Modulorganisation
+- `app/src/main/java/de/henosch/bibelvers` enthält Activities, Repositories und Broadcast-Receiver. Feature-spezifische Helfer sollten nah am Einstiegspunkt bleiben (z. B. Parsing weiterhin in `LosungRepository`).
+- Layouts, Drawables und Strings befinden sich unter `app/src/main/res`. Neue Ressourcen erhalten Namen im `snake_case`, passend zum Verwendungszweck (z. B. `activity_devotional.xml`).
+- Langfristig benötigte Daten wie die jährlichen Losungs-ZIP-Dateien liegen unter `app/src/main/assets`. Weitere Jahre im Format `Losung_<YEAR>_XML.zip` ablegen, damit `LosungRepository.ensureYear` sie automatisch findet.
+- Gradle-Wrapper-Dateien bleiben im Projektstamm. Bei neuen Modulen die vorhandene Struktur übernehmen, damit `settings.gradle` konsistent bleibt.
 
-## Build, Test, and Development Commands
-- `./build.sh` primes `local.properties`, configures `JAVA_HOME`, and triggers a debug build for repeatable local setups.
-- `./gradlew assembleDebug` produces `app/build/outputs/apk/debug/app-debug.apk` for sideloading.
-- `./gradlew installDebug` pushes the debug APK to a connected emulator or device.
-- `./gradlew lint` and `./gradlew testDebugUnitTest` run static checks and JVM tests before review; use `./gradlew connectedAndroidTest` for instrumentation on a booted device.
+## Build-, Test- und Entwicklungsbefehle
+- `./build.sh` bereitet `local.properties` vor, setzt `JAVA_HOME` und startet den Debug-Build für reproduzierbare lokale Setups.
+- `./gradlew assembleDebug` erzeugt `app/build/outputs/apk/debug/app-debug.apk` zum Sideloaden.
+- `./gradlew installDebug` installiert die Debug-APK auf einem verbundenen Emulator oder Gerät.
+- `./gradlew lint` und `./gradlew testDebugUnitTest` führen statische Prüfungen sowie JVM-Tests vor dem Review aus. Für instrumentierte Tests auf einem laufenden Gerät `./gradlew connectedAndroidTest` verwenden.
 
-## Coding Style & Naming Conventions
-- Kotlin files use 4-space indentation, braces on the same line, and idiomatic constructs (scope functions, coroutines) as already shown in `MainActivity.kt`.
-- Name classes and activities in `PascalCase`, properties and methods in `camelCase`, and constants with `ALL_CAPS` inside `companion object`.
-- Favor View Binding (`ActivityMainBinding`) over `findViewById`, and keep UI updates on the main thread; document non-obvious coroutines with short comments.
-- Resource IDs follow Android defaults: layouts in `snake_case`, string names prefixed by screen (e.g., `main_subtitle`).
+## Coding-Style und Namenskonventionen
+- Kotlin-Dateien nutzen eine Einrückung von vier Leerzeichen, geschweifte Klammern bleiben in derselben Zeile. Setze idiomatische Konstrukte wie Scope-Funktionen und Coroutines ein (siehe `MainActivity.kt`).
+- Klassen und Activities erhalten Namen im `PascalCase`, Eigenschaften und Methoden im `camelCase`, Konstanten innerhalb eines `companion object` in `ALL_CAPS`.
+- View Binding (`ActivityMainBinding`) bevorzugen statt `findViewById`, UI-Aktualisierungen auf dem Main-Thread halten. Nicht offensichtliche Coroutines kurz kommentieren.
+- Ressourcen-IDs folgen den Android-Standards: Layouts in `snake_case`, Strings mit Präfix nach Bildschirm (z. B. `main_subtitle`).
 
-## Testing Guidelines
-- Unit-Tests liegen unter `app/src/test/java`; Dateiendung `Test` verwenden (`LosungRepositoryDownloadTest`). Prüft auch den Jahreswechsel via MockWebServer.
-- Instrumentierte Tests gehören nach `app/src/androidTest/java` (Runner `AndroidJUnitRunner`); nach jedem Lauf per Test hinterlassene Dateien/Prefs aufräumen.
-- Regressionstests bei Änderungen an Datum, Benachrichtigungs-Timing oder Ressourcen-Downloads ergänzen.
-- Vor jedem Push mindestens `./gradlew lint testDebugUnitTest` laufen lassen; `./gradlew connectedAndroidTest` bei Bedarf für Geräte-Checks.
+## Test-Richtlinien
+- Unit-Tests liegen unter `app/src/test/java`; Dateinamen enden auf `Test` (z. B. `LosungRepositoryDownloadTest`). Den Jahreswechsel mit MockWebServer abdecken.
+- Instrumentierte Tests gehören nach `app/src/androidTest/java` (Runner `AndroidJUnitRunner`). Nach jedem Lauf Dateien oder Preferences aufräumen, die durch Tests angelegt wurden.
+- Bei Änderungen an Datum, Benachrichtigungs-Timing oder Ressourcen-Downloads Regressionstests ergänzen.
+- Vor jedem Push mindestens `./gradlew lint testDebugUnitTest` ausführen; bei Bedarf `./gradlew connectedAndroidTest` für Gerätetests starten.
 
-## Commit & Pull Request Guidelines
-- Current history uses concise, imperative subjects (e.g., `Initial commit`); keep messages under ~72 characters and describe *what* changes, optionally elaborating in the body.
-- Reference issues in the body when applicable, and note any asset or resource updates that require QA.
-- Pull requests should outline the motivation, list executed commands (`lint`, `testDebugUnitTest`, emulator smoke tests), and include screenshots or recordings for UI changes.
-- Tag reviewers on code-owner areas (UI, repository, scheduling) so domain experts can sign off.
+## Commit- und Pull-Request-Richtlinien
+- Die Historie nutzt kurze imperative Betreffzeilen (z. B. `Initial commit`). Betreff unter ca. 72 Zeichen halten und beschreiben, *was* geändert wurde; Details optional im Body ergänzen.
+- Issues im Commit-Body referenzieren, wenn vorhanden, und Nutzer:innen auf geänderte Assets oder Ressourcen hinweisen, die QA benötigen.
+- Pull Requests erklären Motivation, listen ausgeführte Befehle (`lint`, `testDebugUnitTest`, Emulator-Smoke-Tests) und enthalten bei UI-Änderungen Screenshots oder Aufzeichnungen.
+- Reviewer:innen aus den zuständigen Bereichen (UI, Repositories, Scheduling) taggen, damit Domain-Expert:innen freigeben können.
 
-## Configuration Notes
-- Keep `local.properties` machine-specific; rely on `ANDROID_HOME`/`ANDROID_SDK_ROOT` variables or edit the file locally without committing secrets.
-- `build.sh` pins `temurin-17`; update the script alongside any Gradle or AGP upgrade so contributors share identical toolchains.
-- When adding streamed content or external URLs, document firewall or certificate needs in `README.md` and guard secrets via system properties rather than hardcoding.
+## Konfigurationshinweise
+- `local.properties` bleibt maschinenspezifisch. Auf `ANDROID_HOME`/`ANDROID_SDK_ROOT` vertrauen oder die Datei lokal anpassen, ohne Secrets einzuchecken.
+- `build.sh` pinnt `temurin-17`. Bei Anpassungen an Gradle oder dem Android-Gradle-Plugin das Skript mit aktualisieren, damit alle denselben Toolchain-Stand teilen.
+- Bei gestreamten Inhalten oder externen URLs Firewall- oder Zertifikatsanforderungen in `README.md` dokumentieren und Secrets über System-Properties statt Hard-Coding schützen.
