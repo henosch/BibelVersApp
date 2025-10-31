@@ -22,6 +22,7 @@ Technische Hinweise:
 
 Changelog (Version 1.1):
 • Live-Stream-Bedienung verbessert: Der Videostream blendet keine funktionslosen Vor-/Zurück-Tasten mehr ein und kehrt mit einem Zurück-Tap sofort zur App zurück.
+• App- und Stream-Icons überarbeitet: Das Buch-Symbol orientiert sich am neuen Store-Logo und der Kotel-Button zeigt ein klar erkennbares Kreuz.
 • Darstellung überarbeitet: Verse, Datum, Klagemauer-Hintergrund und Status-/Navigationsleisten wurden für helles und dunkles Design neu abgestimmt.
 • Einstellungen erhalten denselben Hintergrund wie der Startscreen, ein klar lesbares „Zurück“ sowie ein verbessertes Farbkonzept (inkl. Uhrzeit/Quelle im Dark Mode).
 • Hochformat-Fix für Haupt- und Einstellungsbildschirm; nur der Livestream rotiert weiterhin ins Querformat.
