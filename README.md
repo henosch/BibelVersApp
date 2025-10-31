@@ -21,6 +21,10 @@ Vor dem ersten Lauf prüfen, ob folgende Tools installiert sind (macOS: Homebrew
 
 Abhängigkeiten prüfen & Build starten:
 ```
+# optional: SDK/Plattformen aktualisieren
+./scripts/update_android_sdk.sh
+
+# Debug-Build erzeugen
 ./build.sh
 ```
 APK liegt danach unter `app/build/outputs/apk/debug/app-debug.apk`.

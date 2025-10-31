@@ -27,15 +27,15 @@
         android:strokeWidth="0.8"
         android:pathData="M40,48 L68,48 M40,52 L68,52 M40,56 L68,56 M40,60 L68,60 M40,64 L68,64 M40,68 L68,68" />
 
-    <!-- Cross - vertical beam (longer, extends down) -->
+    <!-- Cross - vertical beam -->
     <path
         android:fillColor="#3a66c9"
         android:pathData="M51,44 L57,44 L57,72 L51,72 Z" />
 
-    <!-- Cross - horizontal beam (positioned in upper third) -->
+    <!-- Cross - horizontal beam -->
     <path
         android:fillColor="#3a66c9"
-        android:pathData="M44,50 L64,50 L64,56 L44,56 Z" />
+        android:pathData="M44,54 L64,54 L64,60 L44,60 Z" />
 
     <!-- Cross highlight -->
     <path

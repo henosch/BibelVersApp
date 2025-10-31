@@ -1,9 +1,8 @@
-package com.example.bibelvers
+package de.henosch.bibelvers
 
 import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.net.Uri
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.MenuItem
@@ -11,11 +10,12 @@ import android.widget.MediaController
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Gravity
+import androidx.core.net.toUri
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
-import com.example.bibelvers.databinding.ActivityStreamBinding
+import de.henosch.bibelvers.databinding.ActivityStreamBinding
 import kotlin.math.max
 import kotlin.math.roundToInt
 
@@ -68,7 +68,7 @@ class StreamActivity : AppCompatActivity() {
         }
 
         binding.streamProgress.isVisible = true
-        binding.videoView.setVideoURI(Uri.parse(url))
+        binding.videoView.setVideoURI(url.toUri())
         binding.videoView.requestFocus()
     }
 

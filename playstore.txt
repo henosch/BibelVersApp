@@ -4,7 +4,7 @@ Kurzbeschreibung:
 Tägliche Herrnhuter Losung lesen und Livestreams von der Kotel erleben.
 
 Ausführliche Beschreibung:
-BibelVers schenkt dir jeden Tag einen Moment der Besinnung. Die App lädt automatisch die aktuelle Herrnhuter Losung samt Lehrtext und zeigt dir mehrere Livestreams der Klagemauer (Kotel) in Jerusalem. Eine optionale Erinnerung erinnert dich zur gewünschten Tageszeit an den geistlichen Impuls. Die App funktioniert dank lokaler Fallback-Datei auch offline.
+BibelVers schenkt dir jeden Tag einen Moment der Besinnung. Die App lädt automatisch die aktuellen Herrnhuter Losungen samt Lehrtexten und zeigt mehrere Livestreams der Klagemauer (Kotel) in Jerusalem. Eine optionale Erinnerung erinnert dich zur gewünschten Tageszeit an den geistlichen Impuls. Dank einer mitgelieferten Fallback-Datei funktioniert die App auch ohne Internet.
 
 Highlights:
 • Offizielle Losungs- und Lehrtexte der Herrnhuter Brüdergemeine
@@ -14,6 +14,15 @@ Highlights:
 • Keine Werbung, keine Nutzerkonten, keine Datenerfassung
 
 Technische Hinweise:
-• Funktioniert ab Android 8.0 (API 26)
-• Datenzugriff ausschließlich über HTTPS
-• App ist kostenlos, ohne In-App-Käufe oder Werbung
+• Unterstützt Android 8.0 (API 26) bis Android 15 (API 36)
+• Läuft auf Smartphones und Tablets (Portrait-optimiert, Stream im Querformat)
+• Netzwerkzugriff ausschließlich über HTTPS, keine Drittanbieter-SDKs
+• APK-Größe ca. 9 MB (Debug-Build: app/build/outputs/apk/debug/app-debug.apk)
+
+
+Changelog (Version 1.1):
+• Darstellung überarbeitet: Verse, Datum, Klagemauer-Hintergrund und Status-/Navigationsleisten wurden für helles und dunkles Design neu abgestimmt.
+• Einstellungen erhalten denselben Hintergrund wie der Startscreen, ein klar lesbares „Zurück“ sowie ein verbessertes Farbkonzept (inkl. Uhrzeit/Quelle im Dark Mode).
+• Hochformat-Fix für Haupt- und Einstellungsbildschirm; nur der Livestream rotiert weiterhin ins Querformat.
+• Automatischer Download der neuen Losungs-Jahrgänge getestet und abgesichert (MockWebServer-Unit-Test).
+• Build optimiert: Ressourcen- und Code-Shrinking aktiviert, aktualisierte Bibliotheken und Toolchain.

@@ -9,3 +9,4 @@
 *.iml
 repo.git/
 git_publish.sh
+/build.sh

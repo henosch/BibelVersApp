@@ -1,7 +1,7 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-- `app/src/main/java/com/example/bibelvers` holds the Kotlin activities, repositories, and receivers; keep feature-specific helpers near their entry point (e.g., verse parsing stays beside `LosungRepository`).
+- `app/src/main/java/de/henosch/bibelvers` holds the Kotlin activities, repositories, and receivers; keep feature-specific helpers nahe am Einstiegspunkt (z. B. Parsen weiterhin in `LosungRepository`).
 - Layouts, drawables, and strings live under `app/src/main/res`; name new resources with `snake_case` aligned to screen purpose (e.g., `activity_devotional.xml`).
 - Long-lived data such as the yearly Losung ZIP files reside in `app/src/main/assets`; add future years using the `Losung_<YEAR>_XML.zip` pattern so `LosungRepository.ensureYear` continues to resolve them automatically.
 - Gradle wrapper files remain in the root; use the provided structure when introducing new modules so `settings.gradle` stays in sync.
@@ -19,10 +19,10 @@
 - Resource IDs follow Android defaults: layouts in `snake_case`, string names prefixed by screen (e.g., `main_subtitle`).
 
 ## Testing Guidelines
-- Place unit tests under `app/src/test/java`; suffix filenames with `Test` (`LosungRepositoryTest`) and cover parsing edge cases, offline fallbacks, and scheduling math.
-- Instrumented tests belong in `app/src/androidTest/java` using `AndroidJUnitRunner`; reset shared preferences or files between runs.
-- Add regression tests when adjusting date logic or notification timing to guard against locale-specific issues.
-- Ensure CI-equivalent checks pass locally via `./gradlew lint testDebugUnitTest` before pushing.
+- Unit-Tests liegen unter `app/src/test/java`; Dateiendung `Test` verwenden (`LosungRepositoryDownloadTest`). Prüft auch den Jahreswechsel via MockWebServer.
+- Instrumentierte Tests gehören nach `app/src/androidTest/java` (Runner `AndroidJUnitRunner`); nach jedem Lauf per Test hinterlassene Dateien/Prefs aufräumen.
+- Regressionstests bei Änderungen an Datum, Benachrichtigungs-Timing oder Ressourcen-Downloads ergänzen.
+- Vor jedem Push mindestens `./gradlew lint testDebugUnitTest` laufen lassen; `./gradlew connectedAndroidTest` bei Bedarf für Geräte-Checks.
 
 ## Commit & Pull Request Guidelines
 - Current history uses concise, imperative subjects (e.g., `Initial commit`); keep messages under ~72 characters and describe *what* changes, optionally elaborating in the body.

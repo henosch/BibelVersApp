@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Dark blue gradient for dark mode -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#1a2332"
+                android:endColor="#0d1520"
+                android:angle="90" />
+        </shape>
+    </item>
+
+    <!-- Lower dark blue stripe -->
+    <item android:gravity="bottom">
+        <shape android:shape="rectangle">
+            <size android:height="40dp" />
+            <solid android:color="#992a4d7c" />
+        </shape>
+    </item>
+
+    <!-- Darker Western Wall base -->
+    <item android:gravity="bottom">
+        <shape android:shape="rectangle">
+            <size android:height="220dp" />
+            <solid android:color="#8b7355" />
+        </shape>
+    </item>
+
+    <!-- Brick pattern overlay -->
+    <item
+        android:gravity="bottom"
+        android:drawable="@drawable/wall_pattern" />
+
+    <!-- Subtle dark light beam -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#20ffffff"
+                android:centerColor="#08ffffff"
+                android:endColor="#00000000"
+                android:angle="45" />
+        </shape>
+    </item>
+
+</layer-list>

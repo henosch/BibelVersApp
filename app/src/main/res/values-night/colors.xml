@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="verse_text_color">#d2dcff</color>
+    <color name="date_text_color">#dee7ff</color>
+    <color name="settings_icon_tint">#dee7ff</color>
+    <color name="settings_ripple_color">#33ffffff</color>
+    <color name="cross_fill">#9aaee2</color>
+    <color name="verse_reference_color">#bacbff</color>
+    <color name="action_bar_text_color">#f4f4f4</color>
+    <color name="wall_status_bar_color">#3b3428</color>
+    <color name="wall_navigation_bar_color">#3b3428</color>
+    <color name="settings_source_text_color">#9fbaff</color>
+    <color name="time_value_color">@color/settings_source_text_color</color>
+</resources>

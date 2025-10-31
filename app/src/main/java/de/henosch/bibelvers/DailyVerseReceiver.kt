@@ -1,4 +1,4 @@
-package com.example.bibelvers
+package de.henosch.bibelvers
 
 import android.Manifest
 import android.app.NotificationChannel
@@ -54,7 +54,7 @@ class DailyVerseReceiver : BroadcastReceiver() {
     }
 
     private fun handleNotification(context: Context, reschedule: Boolean) {
-        val prefs = context.getSharedPreferences(SettingsActivity.PREFS_FILE, Context.MODE_PRIVATE)
+        val prefs = context.getSharedPreferences(BaseActivity.PREFS_FILE, Context.MODE_PRIVATE)
         if (!prefs.getBoolean(SettingsActivity.KEY_PUSH_NOTIFICATIONS, false)) {
             NotificationScheduler.cancelDaily(context)
             Log.d(TAG, "Push disabled – skipping notification")

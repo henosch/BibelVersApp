@@ -1,4 +1,4 @@
-package com.example.bibelvers
+package de.henosch.bibelvers
 
 import android.app.AlarmManager
 import android.app.PendingIntent

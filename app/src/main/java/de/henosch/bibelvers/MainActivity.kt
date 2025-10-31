@@ -1,19 +1,21 @@
-package com.example.bibelvers
+package de.henosch.bibelvers
 
 import android.content.Intent
-import android.graphics.Color
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.GestureDetectorCompat
+import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
-import com.example.bibelvers.databinding.ActivityMainBinding
+import de.henosch.bibelvers.databinding.ActivityMainBinding
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -22,13 +24,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var gestureDetector: GestureDetectorCompat
+    private lateinit var gestureDetector: GestureDetector
 
     private val currentDate: Calendar = Calendar.getInstance()
-    private val displayDateFormat = SimpleDateFormat("EEEE, dd. MMMM yyyy", Locale("de", "DE"))
+    private val displayDateFormat = SimpleDateFormat("EEEE, dd. MMMM yyyy", Locale.GERMANY)
     private val requestedYears = mutableSetOf<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,9 +40,27 @@ class MainActivity : AppCompatActivity() {
 
         supportActionBar?.hide()
 
-        WindowCompat.setDecorFitsSystemWindows(window, true)
-        window.statusBarColor = Color.parseColor("#3a66c9")
-        window.navigationBarColor = Color.parseColor("#f6dfbb")
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        val isNightMode = (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
+        window.statusBarColor = ContextCompat.getColor(this, R.color.wall_status_bar_color)
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.wall_navigation_bar_color)
+        WindowInsetsControllerCompat(window, window.decorView).apply {
+            isAppearanceLightStatusBars = !isNightMode
+            isAppearanceLightNavigationBars = isNightMode
+        }
+        val originalTop = binding.root.paddingTop
+        val originalBottom = binding.root.paddingBottom
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            view.setPadding(
+                view.paddingLeft,
+                maxOf(originalTop, systemBars.top),
+                view.paddingRight,
+                originalBottom + systemBars.bottom
+            )
+            insets
+        }
+        ViewCompat.requestApplyInsets(binding.root)
 
         currentDate.time = Date()
         setupGestureDetection()
@@ -65,13 +85,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupGestureDetection() {
-        gestureDetector = GestureDetectorCompat(this, object : GestureDetector.SimpleOnGestureListener() {
+        gestureDetector = GestureDetector(this, object : GestureDetector.SimpleOnGestureListener() {
             override fun onFling(
-                e1: MotionEvent,
+                e1: MotionEvent?,
                 e2: MotionEvent,
                 velocityX: Float,
                 velocityY: Float
             ): Boolean {
+                if (e1 == null) return false
                 val diffX = e2.x - e1.x
                 val diffY = e2.y - e1.y
                 if (kotlin.math.abs(diffX) > kotlin.math.abs(diffY) &&
@@ -89,11 +110,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        binding.root.setOnTouchListener { _, event ->
-            gestureDetector.onTouchEvent(event)
-        }
-        binding.root.isClickable = true
-        binding.root.isFocusableInTouchMode = true
+        binding.root.setGestureDetector(gestureDetector)
     }
 
     private fun showPreviousDay() {
@@ -136,7 +153,7 @@ class MainActivity : AppCompatActivity() {
     private fun displayVerseForDate(date: Date, preferLocal: Boolean = false) {
         val formattedDate = displayDateFormat.format(date)
         binding.dateTextView.text = formattedDate.replaceFirstChar {
-            if (it.isLowerCase()) it.titlecase(Locale("de", "DE")) else it.toString()
+            if (it.isLowerCase()) it.titlecase(Locale.GERMANY) else it.toString()
         }
         val entry = LosungRepository.getEntry(this, date, preferLocal)
         if (entry != null) {

@@ -1,8 +1,9 @@
-package com.example.bibelvers
+package de.henosch.bibelvers
 
 import android.content.Context
 import android.util.Log
 import android.util.Xml
+import androidx.annotation.VisibleForTesting
 import org.xmlpull.v1.XmlPullParser
 import java.io.BufferedInputStream
 import java.io.ByteArrayOutputStream
@@ -24,7 +25,9 @@ object LosungRepository {
     private const val TAG = "LosungRepository"
     private const val ZIP_TEMPLATE =
         "https://www.losungen.de/fileadmin/media-losungen/download/Losung_%d_XML.zip"
-    private val parserDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    private val parserDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.GERMANY)
+    @VisibleForTesting
+    internal var zipTemplateOverride: String? = null
 
     suspend fun ensureYear(context: Context, year: Int): Boolean {
         val outputFile = File(context.filesDir, localFileName(year))
@@ -32,7 +35,8 @@ object LosungRepository {
             return false
         }
         return try {
-            val url = URL(String.format(Locale.US, ZIP_TEMPLATE, year))
+            val template = zipTemplateOverride ?: ZIP_TEMPLATE
+            val url = URL(String.format(Locale.US, template, year))
             val connection = (url.openConnection() as HttpURLConnection).apply {
                 connectTimeout = 15_000
                 readTimeout = 15_000
@@ -96,7 +100,7 @@ object LosungRepository {
             return null
         }
 
-        context.resources.openRawResource(R.xml.losungen).use { input ->
+        context.resources.openRawResource(R.raw.losungen).use { input ->
             return parseFromStream(input, target)
         }
     }
