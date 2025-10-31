@@ -10,3 +10,7 @@
 repo.git/
 git_publish.sh
 /build.sh
+# Local artifacts
+upload-keystore.jks
+*.backup
+
