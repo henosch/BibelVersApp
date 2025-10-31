@@ -6,7 +6,6 @@ import android.content.pm.ActivityInfo
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.MediaController
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Gravity
@@ -46,10 +45,6 @@ class StreamActivity : AppCompatActivity() {
             hide(WindowInsetsCompat.Type.systemBars())
             systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         }
-
-        val mediaController = MediaController(this)
-        mediaController.setAnchorView(binding.videoView)
-        binding.videoView.setMediaController(mediaController)
 
         binding.videoView.setOnPreparedListener { mp ->
             binding.videoView.post {
