@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">BibelVers</string>
+    <string name="bibelvers_not_found">Kein Bibelvers für das heutige Datum gefunden.</string>
+    <string name="shabbat_shalom">Shabbat Shalom</string>
+    <string name="settings_title">Einstellungen</string>
+    <string name="settings_push_label">Push-Nachricht für den Tagesvers</string>
+    <string name="settings_push_hint">Aktiviere, um eine Erinnerung für den Bibelvers des Tages zu erhalten. Tippe hier für einen Testversand.</string>
+    <string name="settings_push_hint_click_target">Tippe hier</string>
+    <string name="settings_push_time_label">Uhrzeit für die Benachrichtigung</string>
+    <string name="settings_push_time_button">Uhrzeit wählen</string>
+    <string name="settings_push_enabled">Push-Benachrichtigungen aktiviert.</string>
+    <string name="settings_push_disabled">Push-Benachrichtigungen deaktiviert.</string>
+    <string name="settings_content_description">Einstellungen öffnen</string>
+    <string name="settings_time_format">%1$02d:%2$02d Uhr</string>
+    <string name="settings_time_dialog_title">Benachrichtigungszeit</string>
+    <string name="settings_data_source">Datenquelle: Lokal gespeicherte BibelVerse (AT &amp; NT)</string>
+    <string name="settings_more_info">Datenschutz anzeigen</string>
+    <string name="settings_stream_source"><![CDATA[Livestream-Quelle: <a href="https://thekotel.org/en/">thekotel.org</a>]]></string>
+    <string name="settings_dedication">Mit Liebe für Carmen &#9829;</string>
+    <string name="settings_push_permission_denied">Benachrichtigungen wurden nicht erlaubt.</string>
+    <string name="notification_channel_name">Bibelvers des Tages</string>
+    <string name="notification_channel_description">Benachrichtigungen für den täglichen Bibelvers</string>
+    <string name="notification_title">Bibelvers des Tages</string>
+    <string name="notification_message">Der heutige Bibelvers ist bereit. Öffne die App für mehr.</string>
+    <string name="stream_picker_title">Kotel-Livestream auswählen</string>
+    <string name="stream_picker_error">Kein Livestream verfügbar.</string>
+    <string name="stream_picker_network_error">Livestream konnte nicht geladen werden.</string>
+    <string name="stream_cross_description">Livestream von der Klagemauer öffnen</string>
+    <string name="stream_blocked_shabbat">Der Livestream ist während des Schabbats deaktiviert.</string>
+    <string name="settings_push_test_sent">Testbenachrichtigung versendet.</string>
+    <string name="settings_push_test_disabled">Bitte Push-Benachrichtigungen aktivieren, um den Test zu senden.</string>
+    <string name="settings_shabbat_override_enabled">Schabbat-Sperre aufgehoben.</string>
+    <string name="settings_shabbat_override_disabled">Schabbat-Sperre wieder aktiv.</string>
+    <string name="settings_theme_label">Design</string>
+    <string name="settings_theme_hint">Wähle das App-Design</string>
+    <string name="settings_theme_system">Systemstandard</string>
+    <string name="settings_theme_light">Hell</string>
+    <string name="settings_theme_dark">Dunkel</string>
+</resources>

@@ -1,0 +1,62 @@
+BibelVers – BibelVers & Kotel Stream
+
+Kurzbeschreibung:
+Täglichen Bibelvers lesen und Livestreams von der Kotel erleben.
+
+Ausführliche Beschreibung:
+BibelVers schenkt dir jeden Tag einen Moment der Besinnung. Die App enthält eine vollständig lokale Sammlung aus Versen des Alten und Neuen Testaments (BibelVerse.xml) und kombiniert sie einmal pro Jahr zufällig – ohne Downloads aus dem Internet. Zusätzlich zeigt sie mehrere Livestreams der Klagemauer (Kotel) in Jerusalem. Eine optionale Erinnerung erinnert dich zur gewünschten Tageszeit an den geistlichen Impuls. Die Verse funktionieren komplett offline; nur die Streams benötigen Internet.
+
+Highlights:
+• Lokal generierte BibelVerse (Verspaar aus Altem und Neuem Testament) ohne externe Abhängigkeiten
+• Livestream-Auswahl verschiedener Kotel-Kameras in Jerusalem
+• Shabbat-Hinweis sowie Offline-Unterstützung
+• Optionale Push-Benachrichtigung zur Wunschzeit
+• Keine Werbung, keine Nutzerkonten, keine Datenerfassung
+
+Technische Hinweise:
+• Unterstützt Android 8.0 (API 26) bis Android 15 (API 36)
+• Läuft auf Smartphones und Tablets (Portrait-optimiert, Stream im Querformat)
+• Netzwerkzugriff ausschließlich über HTTPS, keine Drittanbieter-SDKs
+• APK-Größe ca. 1,2 MB (Debug-Build: app/build/outputs/apk/debug/app-debug.apk)
+
+## Hinweis für Play-Store-Listing
+• Die verlinkte Datenschutzerklärung liegt auf GitHub Pages unter https://henosch.github.io/BibelVersApp/datenschutz.html.
+• Pages ist im Repository auf `main` mit dem Unterordner `docs/` konfiguriert (`gh api repos/henosch/BibelVersApp/pages --method POST -f build_type=legacy -f source[branch]=main -f source[path]=/docs`).
+• Nach Änderungen an `docs/datenschutz.html` den Pages-Build anstoßen: `gh api repos/henosch/BibelVersApp/pages/builds --method POST` und kurz warten, bis `status":"built"` meldet.
+• Im Play Store exakt diese URL hinterlegen; sie entspricht bit-identisch der im APK eingebetteten `app/src/main/assets/datenschutz.html`.
+
+
+Changelog (Version 1.6):
+• Entfernt versehentlich eingecheckte .DS_Store-Dateien und ergänzt automatische Bereinigung vor jedem Build.
+• `git_publish.sh` erstellt und aktualisiert Release-Tags inkl. Push über das Menü.
+• GitHub-Pages-Konfiguration (main/docs) wird jetzt automatisch gesetzt und per Menüpunkt angezeigt samt fertiger URL.
+
+Changelog (Version 1.5):
+• Schabbat-Sperre für die Livestream-Schaltfläche präzisiert (Winter 17–17 Uhr, Sommer 19–19 Uhr) mit optionaler Override-Geste in den Einstellungen.
+• Integrierte Datenschutzansicht im App-Stil inkl. WebView, aktualisierte Texte und hellblauem Theme.
+• Feature-Grafik und Texte an das BibelVerse-Konzept angepasst.
+• Diverse Bugfixes beim Offline-Vers-Handling und in den Hilfsskripten (`backup.sh`, `build_bibelverse_xml.py`).
+
+Changelog (Version 1.4):
+• Umstellung auf die neue BibelVerse.xml: Alle Tagesverse liegen lokal in der App, werden einmal pro Jahr zufällig durchgemischt und benötigen keinen Download mehr.
+• Neuer Daten-Parser, vereinfachtes Repository und entschlackte Einstellungen – der rote „Fallback“-Modus entfällt, weil keine Serverfehler mehr auftreten können.
+• Alle Hinweise und Texte wurden auf „Bibelvers“ umgestellt, inklusive Datenschutzhinweisen und Play-Store-Beschreibung.
+• GitHub-Skript `scripts/build_bibelverse_xml.py` erlaubt weiterhin das Generieren/Neu-Mischen der Verse.
+• Diverse technische Updates (VersionCode 5 / VersionName 1.4, geringere Abhängigkeiten und aufgeräumte Tests).
+
+Changelog (Version 1.3):
+• Material Components entfernt und vollständig auf AppCompat umgestellt. Dadurch entfallen die veralteten Edge-to-Edge-APIs, die App ist deutlich kleiner und kompatibel mit Android 15.
+• Jahresvorab-Download überarbeitet: Für das Folgejahr wird erst ab November des laufenden Jahres im Hintergrund geladen; fehlgeschlagene Versuche werden ab November automatisch erneut gestartet.
+• Download-Cache repariert: Wenn ein Jahr zuvor fehlgeschlagen ist, wird der Abruf nun erneut ausgeführt, statt dauerhaft blockiert zu werden.
+• Offline-Fallback erweitert – die neuen Verse  lagen damals direkt im APK, sodass auch ohne Internet der komplette Jahreswechsel funktionierte.
+• Diverse technische Updates (VersionCode 4 / VersionName 1.3, aktualisierte Tests & Builds).
+
+Changelog (Version 1.1):
+• Live-Stream-Bedienung verbessert: Der Videostream blendet keine funktionslosen Vor-/Zurück-Tasten mehr ein und kehrt mit einem Zurück-Tap sofort zur App zurück.
+• App- und Stream-Icons überarbeitet: Das Buch-Symbol orientiert sich am neuen Store-Logo und der Kotel-Button zeigt ein klar erkennbares Kreuz.
+• Einstellungen verweisen direkt auf die Datenquelle und die Livestream-Quelle thekotel.org; der Push-Hinweis enthält jetzt den Testversand und die Widmung in Basil-Schrift.
+• Darstellung überarbeitet: Verse, Datum, Klagemauer-Hintergrund und Status-/Navigationsleisten wurden für helles und dunkles Design neu abgestimmt.
+• Einstellungen erhalten denselben Hintergrund wie der Startscreen, ein klar lesbares „Zurück“ sowie ein verbessertes Farbkonzept (inkl. Uhrzeit/Quelle im Dark Mode).
+• Hochformat-Fix für Haupt- und Einstellungsbildschirm; nur der Livestream rotiert weiterhin ins Querformat.
+• Automatischer Download der damaligen Verse-Jahrgänge getestet und abgesichert (MockWebServer-Unit-Test).
+• Build optimiert: Ressourcen- und Code-Shrinking aktiviert, aktualisierte Bibliotheken und Toolchain.

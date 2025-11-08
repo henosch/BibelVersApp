@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:width="360dp"
+    android:height="220dp"
+    android:viewportWidth="360"
+    android:viewportHeight="220"
+    tools:ignore="VectorRaster">
+
+    <!-- Base stones -->
+    <path
+        android:fillColor="#f9e6c8"
+        android:pathData="M0,0h360v220h-360z" />
+
+    <!-- Horizontal mortar lines -->
+    <path
+        android:strokeColor="#d9b78b"
+        android:strokeWidth="2.5"
+        android:pathData="M0,55h360" />
+    <path
+        android:strokeColor="#d9b78b"
+        android:strokeWidth="2.5"
+        android:pathData="M0,110h360" />
+    <path
+        android:strokeColor="#d9b78b"
+        android:strokeWidth="2.5"
+        android:pathData="M0,165h360" />
+
+    <!-- Vertical mortar lines - row 1 -->
+    <path
+        android:strokeColor="#d9b78b"
+        android:strokeWidth="2.5"
+        android:pathData="M72,0v55" />
+    <path
+        android:strokeColor="#d9b78b"
+        android:strokeWidth="2.5"
+        android:pathData="M144,0v55" />
+    <path
+        android:strokeColor="#d9b78b"
+        android:strokeWidth="2.5"
+        android:pathData="M216,0v55" />
+    <path
+        android:strokeColor="#d9b78b"
+        android:strokeWidth="2.5"
+        android:pathData="M288,0v55" />
+
+    <!-- Vertical mortar lines - row 2 (offset) -->
+    <path
+        android:strokeColor="#d9b78b"
+        android:strokeWidth="2.5"
+        android:pathData="M36,55v55" />
+    <path
+        android:strokeColor="#d9b78b"
+        android:strokeWidth="2.5"
+        android:pathData="M108,55v55" />
+    <path
+        android:strokeColor="#d9b78b"
+        android:strokeWidth="2.5"
+        android:pathData="M180,55v55" />
+    <path
+        android:strokeColor="#d9b78b"
+        android:strokeWidth="2.5"
+        android:pathData="M252,55v55" />
+    <path
+        android:strokeColor="#d9b78b"
+        android:strokeWidth="2.5"
+        android:pathData="M324,55v55" />
+
+    <!-- Vertical mortar lines - row 3 -->
+    <path
+        android:strokeColor="#d9b78b"
+        android:strokeWidth="2.5"
+        android:pathData="M72,110v55" />
+    <path
+        android:strokeColor="#d9b78b"
+        android:strokeWidth="2.5"
+        android:pathData="M144,110v55" />
+    <path
+        android:strokeColor="#d9b78b"
+        android:strokeWidth="2.5"
+        android:pathData="M216,110v55" />
+    <path
+        android:strokeColor="#d9b78b"
+        android:strokeWidth="2.5"
+        android:pathData="M288,110v55" />
+
+    <!-- Vertical mortar lines - row 4 (offset) -->
+    <path
+        android:strokeColor="#d9b78b"
+        android:strokeWidth="2.5"
+        android:pathData="M36,165v55" />
+    <path
+        android:strokeColor="#d9b78b"
+        android:strokeWidth="2.5"
+        android:pathData="M108,165v55" />
+    <path
+        android:strokeColor="#d9b78b"
+        android:strokeWidth="2.5"
+        android:pathData="M180,165v55" />
+    <path
+        android:strokeColor="#d9b78b"
+        android:strokeWidth="2.5"
+        android:pathData="M252,165v55" />
+    <path
+        android:strokeColor="#d9b78b"
+        android:strokeWidth="2.5"
+        android:pathData="M324,165v55" />
+
+    <!-- Gentle texture overlay -->
+    <path
+        android:fillColor="#33ffffff"
+        android:pathData="M0,0h360v220h-360z" />
+</vector>

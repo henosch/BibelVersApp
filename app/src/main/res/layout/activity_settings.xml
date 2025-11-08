@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_devotional"
+    android:fitsSystemWindows="false">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/settingsToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        android:elevation="0dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:title="@string/settings_title"
+        app:titleTextColor="@color/action_bar_text_color"/>
+
+    <ScrollView
+        android:id="@+id/settingsScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="?attr/actionBarSize"
+        android:clipToPadding="false"
+        android:paddingStart="24dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/pushSwitch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="4dp"
+                android:text="@string/settings_push_label"
+                app:thumbTint="@color/switch_thumb_blue"
+                app:trackTint="@color/switch_track_blue"/>
+
+            <TextView
+                android:id="@+id/pushHintTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/settings_push_hint"
+                android:textColor="@color/settings_hint_text_color"
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/timeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/settings_push_time_label"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/timeValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:textColor="@color/time_value_color"
+                    android:textSize="14sp"
+                    tools:text="08:00 Uhr"/>
+
+                <Button
+                    android:id="@+id/timeButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_push_time_button"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/themeLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:text="@string/settings_theme_label"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/settings_theme_hint"
+                android:textColor="@color/settings_hint_text_color"
+                android:textSize="12sp"/>
+
+            <RadioGroup
+                android:id="@+id/themeRadioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
+
+                <RadioButton
+                    android:id="@+id/themeSystem"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/settings_theme_system"
+                    app:buttonTint="@color/radio_tint_blue"/>
+
+                <RadioButton
+                    android:id="@+id/themeLight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/settings_theme_light"
+                    app:buttonTint="@color/radio_tint_blue"/>
+
+                <RadioButton
+                    android:id="@+id/themeDark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="@string/settings_theme_dark"
+                    app:buttonTint="@color/radio_tint_blue"/>
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/dataSourceTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/settings_data_source"
+                android:textColor="@color/settings_hint_text_color"
+                android:textColorLink="@color/settings_source_text_color"
+                android:textSize="12sp"
+                android:linksClickable="true"/>
+
+            <TextView
+                android:id="@+id/projectInfoTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/settings_more_info"
+                android:textColor="@color/settings_hint_text_color"
+                android:textColorLink="@color/settings_source_text_color"
+                android:textSize="12sp"
+                android:linksClickable="true"/>
+
+            <TextView
+                android:id="@+id/streamSourceTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/settings_stream_source"
+                android:textColor="@color/settings_hint_text_color"
+                android:textColorLink="@color/settings_source_text_color"
+                android:textSize="12sp"
+                android:linksClickable="true"/>
+
+            <TextView
+                android:id="@+id/dedicationTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="24dp"
+                android:padding="4dp"
+                android:text="@string/settings_dedication"
+                android:textAlignment="center"
+                android:fontFamily="@font/basil"
+                android:textColor="@color/settings_hint_text_color"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:fontFamily="@font/basil"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

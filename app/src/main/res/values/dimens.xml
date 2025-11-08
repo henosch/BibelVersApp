@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="settings_compact_content_padding">20dp</dimen>
+    <dimen name="settings_compact_push_top_margin">16dp</dimen>
+    <dimen name="settings_compact_section_spacing">16dp</dimen>
+    <dimen name="settings_compact_theme_spacing">16dp</dimen>
+    <dimen name="settings_compact_link_spacing">4dp</dimen>
+    <dimen name="settings_compact_dedication_spacing">16dp</dimen>
+    <dimen name="settings_compact_radio_spacing">2dp</dimen>
+    <dimen name="settings_compact_radio_padding">2dp</dimen>
+    <dimen name="settings_regular_radio_spacing">4dp</dimen>
+    <dimen name="settings_regular_radio_padding">4dp</dimen>
+    <dimen name="main_small_date_end_margin">16dp</dimen>
+    <dimen name="main_small_date_horizontal_padding">12dp</dimen>
+    <dimen name="dedication_text_size_large">14sp</dimen>
+    <dimen name="dedication_text_size_small">12sp</dimen>
+</resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Safe zone is 66dp diameter circle centered at 54,54 -->
+    <!-- Book -->
+    <path
+        android:fillColor="#1a237e"
+        android:pathData="M32,38 L76,38 L76,78 L32,78 Z" />
+
+    <!-- Book spine shadow -->
+    <path
+        android:fillColor="#0d47a1"
+        android:pathData="M32,38 L36,38 L36,78 L32,78 Z" />
+
+    <!-- Book pages -->
+    <path
+        android:fillColor="#f6dfbb"
+        android:pathData="M34,40 L74,40 L74,76 L34,76 Z" />
+
+    <!-- Page lines -->
+    <path
+        android:strokeColor="#b3d4ff"
+        android:strokeWidth="0.8"
+        android:pathData="M40,48 L68,48 M40,52 L68,52 M40,56 L68,56 M40,60 L68,60 M40,64 L68,64 M40,68 L68,68" />
+
+    <!-- Cross - vertical beam (longer, extends down) -->
+    <path
+        android:fillColor="#3a66c9"
+        android:pathData="M51,44 L57,44 L57,72 L51,72 Z" />
+
+    <!-- Cross - horizontal beam (positioned in upper third) -->
+    <path
+        android:fillColor="#3a66c9"
+        android:pathData="M44,50 L64,50 L64,56 L44,56 Z" />
+
+    <!-- Cross highlight -->
+    <path
+        android:fillColor="#ffffff"
+        android:fillAlpha="0.3"
+        android:pathData="M51,44 L54,44 L54,72 L51,72 Z" />
+</vector>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<de.henosch.bibelvers.SwipeGestureLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_devotional"
+    android:padding="24dp"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/settingsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/ripple_icon_button"
+        android:contentDescription="@string/settings_content_description"
+        android:padding="8dp"
+        android:src="@drawable/ic_settings"
+        android:tint="@color/settings_icon_tint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/greetingTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:textColor="#3a66c9"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dateTextView"
+        tools:text="Shabbat Shalom"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/dateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/bg_date_chip"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:textColor="@color/date_text_color"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/settingsButton"
+        tools:text="Montag, 20. Oktober 2025" />
+
+    <TextView
+        android:id="@+id/bibelversTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textSize="18sp"
+        android:textColor="@color/verse_text_color"
+        app:layout_constraintTop_toBottomOf="@id/greetingTextView"
+        app:layout_goneMarginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/bibelversVersTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="end"
+        android:textStyle="italic"
+        android:textColor="@color/verse_reference_color"
+        app:layout_constraintTop_toBottomOf="@id/bibelversTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/zusatzTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textSize="18sp"
+        android:textColor="@color/verse_text_color"
+        app:layout_constraintTop_toBottomOf="@id/bibelversVersTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/zusatzVersTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="end"
+        android:textStyle="italic"
+        android:textColor="@color/verse_reference_color"
+        app:layout_constraintTop_toBottomOf="@id/zusatzTextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/kotelStreamButton"
+        android:layout_width="200dp"
+        android:layout_height="240dp"
+        android:contentDescription="@string/stream_cross_description"
+        android:padding="12dp"
+        android:src="@drawable/ic_cross_simple"
+        android:clickable="true"
+        android:focusable="true"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/zusatzVersTextView"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <ProgressBar
+        android:id="@+id/kotelStreamProgress"
+        style="@android:style/Widget.ProgressBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/kotelStreamButton"
+        app:layout_constraintEnd_toEndOf="@id/kotelStreamButton"
+        app:layout_constraintStart_toStartOf="@id/kotelStreamButton"
+        app:layout_constraintTop_toTopOf="@id/kotelStreamButton" />
+
+</de.henosch.bibelvers.SwipeGestureLayout>

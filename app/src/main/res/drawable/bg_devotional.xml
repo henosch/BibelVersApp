@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Gentle blue gradient reminiscent of the Israeli flag -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#e6f2ff"
+                android:endColor="#b3d4ff"
+                android:angle="90" />
+        </shape>
+    </item>
+
+    <!-- Lower blue stripe -->
+    <item android:gravity="bottom">
+        <shape android:shape="rectangle">
+            <size android:height="40dp" />
+            <solid android:color="#993a66c9" />
+        </shape>
+    </item>
+
+    <!-- Stylised Western Wall base -->
+    <item android:gravity="bottom">
+        <shape android:shape="rectangle">
+            <size android:height="220dp" />
+            <solid android:color="#f6dfbb" />
+        </shape>
+    </item>
+
+    <!-- Brick pattern overlay -->
+    <item
+        android:gravity="bottom"
+        android:drawable="@drawable/wall_pattern" />
+
+    <!-- Subtle light beam -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#40ffffff"
+                android:centerColor="#10ffffff"
+                android:endColor="#00000000"
+                android:angle="45" />
+        </shape>
+    </item>
+
+</layer-list>

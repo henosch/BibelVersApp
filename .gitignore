@@ -1,0 +1,18 @@
+/.gradle/
+/.gradle-tmp/
+/.idea/
+/local.properties
+/build/
+/app/build/
+**/.DS_Store
+*.log
+*.iml
+repo.git/
+git_publish.sh
+/build.sh
+# Local artifacts
+upload-keystore.jks
+*.backup
+command_reference.txt
+/scripts/build_bibelverse_xml.py
+/scripts/capture_screenshots.sh

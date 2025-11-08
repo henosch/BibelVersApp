@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Deep blue gradient for dark mode -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#1e2a47"
+                android:endColor="#141b2d"
+                android:angle="90" />
+        </shape>
+    </item>
+
+    <!-- Lower warm stripe -->
+    <item android:gravity="bottom">
+        <shape android:shape="rectangle">
+            <size android:height="40dp" />
+            <solid android:color="#66816955" />
+        </shape>
+    </item>
+
+    <!-- Warm Western Wall base -->
+    <item android:gravity="bottom">
+        <shape android:shape="rectangle">
+            <size android:height="220dp" />
+            <solid android:color="#9d8569" />
+        </shape>
+    </item>
+
+    <!-- Brick pattern overlay -->
+    <item
+        android:gravity="bottom"
+        android:drawable="@drawable/wall_pattern" />
+
+    <!-- Subtle warm light beam -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#20f5ede0"
+                android:centerColor="#08f5ede0"
+                android:endColor="#00000000"
+                android:angle="45" />
+        </shape>
+    </item>
+
+</layer-list>
