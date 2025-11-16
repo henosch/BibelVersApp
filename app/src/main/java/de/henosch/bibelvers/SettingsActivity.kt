@@ -20,6 +20,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
@@ -288,6 +289,9 @@ class SettingsActivity : BaseActivity() {
 
         recordDefaultTopMargin(binding.pushSwitch)
         recordDefaultTopMargin(binding.timeLabel)
+        recordDefaultTopMargin(binding.randomVerseTitle)
+        recordDefaultTopMargin(binding.randomVerseSwitch)
+        recordDefaultTopMargin(binding.randomVerseHint)
         recordDefaultTopMargin(binding.themeLabel)
         recordDefaultTopMargin(binding.dataSourceTextView)
         recordDefaultTopMargin(binding.projectInfoTextView)
@@ -307,7 +311,10 @@ class SettingsActivity : BaseActivity() {
         val config = resources.configuration
         val heightDp = config.screenHeightDp
         val widthDp = config.screenWidthDp
-        val useCompact = (widthDp > 0 && widthDp <= 411) || (heightDp > 0 && heightDp <= 820)
+        val smallestDp = config.smallestScreenWidthDp
+        val useCompact = (widthDp > 0 && widthDp <= 450) ||
+            (heightDp > 0 && heightDp <= 860) ||
+            (smallestDp > 0 && smallestDp <= 430)
         if (useCompact) {
             val horizontalPadding = resources.getDimensionPixelSize(R.dimen.settings_compact_content_padding)
             val scrollView = binding.settingsScrollView
@@ -320,6 +327,9 @@ class SettingsActivity : BaseActivity() {
 
             setTopMargin(binding.pushSwitch, R.dimen.settings_compact_push_top_margin)
             setTopMargin(binding.timeLabel, R.dimen.settings_compact_section_spacing)
+            setTopMargin(binding.randomVerseTitle, R.dimen.settings_compact_section_spacing)
+            setTopMargin(binding.randomVerseSwitch, R.dimen.settings_compact_random_spacing)
+            setTopMargin(binding.randomVerseHint, R.dimen.settings_compact_random_spacing)
             setTopMargin(binding.themeLabel, R.dimen.settings_compact_theme_spacing)
             setTopMargin(binding.dataSourceTextView, R.dimen.settings_compact_section_spacing)
             setTopMargin(binding.projectInfoTextView, R.dimen.settings_compact_link_spacing)
@@ -337,6 +347,7 @@ class SettingsActivity : BaseActivity() {
             setTypeface(typeface, Typeface.BOLD)
             setOnClickListener { handleDedicationTap() }
         }
+        applyTextSizes(useCompact)
     }
 
     private fun restoreDefaultSpacing() {
@@ -350,12 +361,40 @@ class SettingsActivity : BaseActivity() {
 
         restoreTopMargin(binding.pushSwitch)
         restoreTopMargin(binding.timeLabel)
+        restoreTopMargin(binding.randomVerseTitle)
+        restoreTopMargin(binding.randomVerseSwitch)
+        restoreTopMargin(binding.randomVerseHint)
         restoreTopMargin(binding.themeLabel)
         restoreTopMargin(binding.dataSourceTextView)
         restoreTopMargin(binding.projectInfoTextView)
         restoreTopMargin(binding.streamSourceTextView)
         restoreTopMargin(binding.dedicationTextView)
         applyRadioSpacing(compact = false)
+        applyTextSizes(useCompact = false)
+    }
+
+    private fun applyTextSizes(useCompact: Boolean) {
+        val titleSizePx = resources.getDimension(
+            if (useCompact) R.dimen.settings_title_text_size_compact else R.dimen.settings_title_text_size_regular
+        )
+        val bodySizePx = resources.getDimension(
+            if (useCompact) R.dimen.settings_body_text_size_compact else R.dimen.settings_body_text_size_regular
+        )
+        setTextSize(binding.pushSwitch, titleSizePx)
+        setTextSize(binding.timeLabel, titleSizePx)
+        setTextSize(binding.randomVerseTitle, titleSizePx)
+        setTextSize(binding.randomVerseSwitch, titleSizePx)
+        setTextSize(binding.themeLabel, titleSizePx)
+        setTextSize(binding.pushHintTextView, bodySizePx)
+        setTextSize(binding.randomVerseHint, bodySizePx)
+        setTextSize(binding.dataSourceTextView, bodySizePx)
+        setTextSize(binding.projectInfoTextView, bodySizePx)
+        setTextSize(binding.streamSourceTextView, bodySizePx)
+        setTextSize(binding.timeValue, bodySizePx)
+    }
+
+    private fun setTextSize(view: TextView, sizePx: Float) {
+        view.setTextSize(TypedValue.COMPLEX_UNIT_PX, sizePx)
     }
 
     private fun applyRadioSpacing(compact: Boolean) {

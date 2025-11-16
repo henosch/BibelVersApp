@@ -1,6 +1,7 @@
 package de.henosch.bibelvers
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
@@ -12,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.edit
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
@@ -32,6 +34,7 @@ class MainActivity : BaseActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var gestureDetector: GestureDetector
     private var defaultDateChipEndMargin: Int = 0
+    private var lastSessionCheck: Long = 0
 
     private val currentDate: Calendar = Calendar.getInstance()
     private val displayDateFormat = SimpleDateFormat("EEEE, dd. MMMM yyyy", Locale.GERMANY)
@@ -70,13 +73,13 @@ class MainActivity : BaseActivity() {
         ViewCompat.requestApplyInsets(binding.root)
 
         currentDate.time = Date()
+        val randomActive = prefs.getBoolean(BaseActivity.KEY_RANDOM_VERSE_MODE, true)
         if (savedInstanceState == null) {
-            if (getSharedPreferences(BaseActivity.PREFS_FILE, MODE_PRIVATE).getBoolean(
-                    BaseActivity.KEY_RANDOM_VERSE_MODE, true
-                )
-            ) {
+            if (randomActive) {
                 BibelVersRepository.beginTodaySession(this)
             }
+        } else if (randomActive) {
+            checkSessionTimeout(prefs, force = false)
         }
         setupGestureDetection()
         setupKotelStreamButton()
@@ -97,12 +100,42 @@ class MainActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
+        val prefs = getSharedPreferences(BaseActivity.PREFS_FILE, MODE_PRIVATE)
+        if (prefs.getBoolean(BaseActivity.KEY_RANDOM_VERSE_MODE, true)) {
+            checkSessionTimeout(prefs, force = true)
+        }
         updateGreeting()
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         adjustDateChipSpacing()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        val prefs = getSharedPreferences(BaseActivity.PREFS_FILE, MODE_PRIVATE)
+        prefs.edit { putLong(BaseActivity.KEY_LAST_RETURN, System.currentTimeMillis()) }
+        lastSessionCheck = System.currentTimeMillis()
+    }
+
+    private fun checkSessionTimeout(prefs: SharedPreferences, force: Boolean) {
+        val now = System.currentTimeMillis()
+        val lastReturn = prefs.getLong(BaseActivity.KEY_LAST_RETURN, 0L)
+        if (!force) {
+            if (now - lastSessionCheck < 5_000) {
+                return
+            }
+            lastSessionCheck = now
+        }
+        if (lastReturn <= 0L) {
+            prefs.edit { putLong(BaseActivity.KEY_LAST_RETURN, now) }
+            return
+        }
+        if ((force && now - lastReturn >= 1_000) || (!force && now - lastReturn >= 7 * 60 * 1000)) {
+            BibelVersRepository.beginTodaySession(this)
+            displayVerseForDate(Date())
+        }
     }
 
     private fun setupGestureDetection() {

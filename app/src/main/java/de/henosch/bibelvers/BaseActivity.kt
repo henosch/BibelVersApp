@@ -31,6 +31,7 @@ abstract class BaseActivity : AppCompatActivity() {
         const val KEY_THEME_MODE = "theme_mode"
         const val KEY_SHABBAT_OVERRIDE = "shabbat_override"
         const val KEY_RANDOM_VERSE_MODE = "random_verse_mode"
+        const val KEY_LAST_RETURN = "last_foreground"
         const val THEME_MODE_LIGHT = "light"
         const val THEME_MODE_DARK = "dark"
         const val THEME_MODE_SYSTEM = "system"

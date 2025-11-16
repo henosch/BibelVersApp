@@ -4,12 +4,13 @@ Kurzbeschreibung:
 Täglichen Bibelvers lesen und Livestreams von der Kotel erleben.
 
 Ausführliche Beschreibung:
-BibelVers schenkt dir jeden Tag einen Moment der Besinnung. Die App enthält eine vollständig lokale Sammlung aus Versen des Alten und Neuen Testaments (BibelVerse.xml) und kombiniert sie einmal pro Jahr zufällig – ohne Downloads aus dem Internet. Zusätzlich zeigt sie mehrere Livestreams der Klagemauer (Kotel) in Jerusalem. Eine optionale Erinnerung erinnert dich zur gewünschten Tageszeit an den geistlichen Impuls. Die Verse funktionieren komplett offline; nur die Streams benötigen Internet.
+BibelVers schenkt dir jeden Tag einen neuen geistlichen Impuls. Über 1.000 Verse aus Altem und Neuem Testament liegen vollständig offline im Paket und werden zufällig zu Tageslosungen kombiniert – ganz ohne Serverabruf. Holst du die App nach längerer Pause (ab ca. sieben Minuten) wieder in den Vordergrund, erscheint automatisch ein frischer Vers; in den Einstellungen lässt sich dieses Verhalten auf Wunsch abschalten, sodass pro Tag nur ein Text bleibt. Zusätzlich zeigt die App mehrere Livestreams der Klagemauer (Kotel) in Jerusalem. Eine optionale Benachrichtigung erinnert dich zur gewünschten Tageszeit, die Verse selbst funktionieren komplett offline; nur die Streams benötigen Internet.
 
 Highlights:
 • Lokal generierte BibelVerse (Verspaar aus Altem und Neuem Testament) ohne externe Abhängigkeiten
 • Livestream-Auswahl verschiedener Kotel-Kameras in Jerusalem
 • Shabbat-Hinweis sowie Offline-Unterstützung
+• Optionaler Wechselmodus: nach >7 Minuten Hintergrundzeit automatisch neuer Vers (abschaltbar) und stromsparend, da nur beim Zurückkehren geprüft wird
 • Optionale Push-Benachrichtigung zur Wunschzeit
 • Keine Werbung, keine Nutzerkonten, keine Datenerfassung
 
@@ -25,9 +26,15 @@ Technische Hinweise:
 • Nach Änderungen an `docs/datenschutz.html` den Pages-Build anstoßen: `gh api repos/henosch/BibelVersApp/pages/builds --method POST` und kurz warten, bis `status":"built"` meldet.
 • Im Play Store exakt diese URL hinterlegen; sie entspricht bit-identisch der im APK eingebetteten `app/src/main/assets/datenschutz.html`.
 
+Changelog (Version 1.9):
+• Option „Neue Verse pro Start“ kombiniert nun den 7-Minuten-Check mit einem energiesparenden Verhalten (keine Timer, nur kurze Prüfung beim Wiederkehren).
+• Schriftgrößen und Abstände in den Einstellungen für kleine Displays (z. B. OnePlus 6T) weiter reduziert.
+• Play-Store-Texte aktualisiert und Highlights erweitert.
+
 Changelog (Version 1.8):
 • Bei jedem App-Start am selben Tag erscheint nun ein neuer zufällig ausgewählter Vers aus dem über 1.000 Einträge umfassenden Fundus.
 • Die Tageshistorie bleibt stabil – Zurückblättern zeigt weiterhin denselben Vers wie zuvor.
+• Nach ca. sieben Minuten im Hintergrund zieht die App automatisch einen neuen Vers; das Verhalten lässt sich in den Einstellungen ein- oder ausschalten.
 
 Changelog (Version 1.7):
 • Lesbarkeit der Vers-Referenzen verbessert: neue Schattenkanten und kleinere Schriftgröße, damit auch auf älteren Android-11-Displays alle Ziffern klar bleiben.

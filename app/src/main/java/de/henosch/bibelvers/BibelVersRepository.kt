@@ -33,8 +33,7 @@ object BibelVersRepository {
         val dayIndex = calendar.get(Calendar.DAY_OF_YEAR) - 1
         val order = VerseOrderManager.orderForYear(context, year, entries.size)
         val formattedDate = parserDateFormat.format(date)
-        val prefs = context.getSharedPreferences(BaseActivity.PREFS_FILE, Context.MODE_PRIVATE)
-        val randomActive = prefs.getBoolean(BaseActivity.KEY_RANDOM_VERSE_MODE, true)
+        val randomActive = SessionOffsetStore.isRandomModeEnabled(context)
         val offset = if (randomActive) {
             computeSessionOffset(context, formattedDate, entries.size, calendar.time)
         } else {
@@ -58,6 +57,7 @@ object BibelVersRepository {
     fun isFallbackActive(@Suppress("UNUSED_PARAMETER") context: Context): Boolean = false
 
     fun beginTodaySession(context: Context) {
+        if (!SessionOffsetStore.isRandomModeEnabled(context)) return
         val entries = loadEntries(context)
         if (entries.isEmpty()) return
         val dateKey = parserDateFormat.format(Date())
@@ -186,6 +186,11 @@ object BibelVersRepository {
     }
 
     private object SessionOffsetStore {
+
+        fun isRandomModeEnabled(context: Context): Boolean =
+            context.getSharedPreferences(BaseActivity.PREFS_FILE, Context.MODE_PRIVATE)
+                .getBoolean(BaseActivity.KEY_RANDOM_VERSE_MODE, true)
+
         fun consumeNext(context: Context, dateKey: String, size: Int): Int {
             if (size <= 0) return 0
             val prefs = context.getSharedPreferences(SESSION_PREFS, Context.MODE_PRIVATE)
