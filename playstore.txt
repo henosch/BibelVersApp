@@ -29,8 +29,3 @@ Changelog (Version 1.7):
 • Lesbarkeit der Vers-Referenzen verbessert: neue Schattenkanten und kleinere Schriftgröße, damit auch auf älteren Android-11-Displays alle Ziffern klar bleiben.
 • Autorenangaben rücken auf kleinen Displays weiter von der Bildschirmkante weg und passen sich dynamisch an besonders schmale Geräte an.
 • Debug/Release-Builds aktualisiert (VersionCode 8 / VersionName 1.7) und auf allen Testgeräten (Pixel 9a/Pixel 10 Pro XL/OnePlus A6013) geprüft.
-
-Changelog (Version 1.2):
-• Interne Trennung zwischen Bibelvers-Parsing und UI, damit neue Verse einfacher eingebunden werden können.
-• Build-Skripte (`build.sh`, `scripts/update_android_sdk.sh`) prüfen Abhängigkeiten und installieren fehlende SDK-Komponenten.
-• Vorbereitung auf zufällig kombinierte AT/NT-Verse für das Folge-Release sowie kleinere UI-Polishes.
