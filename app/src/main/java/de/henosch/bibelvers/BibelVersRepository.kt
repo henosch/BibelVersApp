@@ -17,8 +17,12 @@ object BibelVersRepository {
     private const val TAG = "BibelVersRepository"
     private const val ORDER_PREFS = "bibelverse_order"
     private const val ORDER_KEY_PREFIX = "order_"
+    private const val SESSION_PREFS = "bibelverse_session"
+    private const val SESSION_CURRENT_PREFIX = "current_"
+    private const val SESSION_NEXT_PREFIX = "next_"
     private val parserDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.GERMANY)
     private var cachedEntries: List<BibelVersData>? = null
+    private val activeSessionOffsets = mutableMapOf<String, Int>()
 
     fun getEntry(context: Context, date: Date, preferLocal: Boolean = false): BibelVersEntry? {
         val entries = loadEntries(context)
@@ -28,9 +32,12 @@ object BibelVersRepository {
         val year = calendar.get(Calendar.YEAR)
         val dayIndex = calendar.get(Calendar.DAY_OF_YEAR) - 1
         val order = VerseOrderManager.orderForYear(context, year, entries.size)
-        val entryIndex = order[dayIndex % entries.size]
-        val verse = entries[entryIndex]
         val formattedDate = parserDateFormat.format(date)
+        val offset = computeSessionOffset(context, formattedDate, entries.size, calendar.time)
+        val normalizedDayIndex = positiveModulo(dayIndex, entries.size)
+        val orderIndex = (normalizedDayIndex + offset) % entries.size
+        val entryIndex = order[orderIndex]
+        val verse = entries[entryIndex]
         return BibelVersEntry(
             formattedDate,
             sanitize(verse.textAltesTestament),
@@ -43,6 +50,34 @@ object BibelVersRepository {
     fun formatDate(date: Date): String = parserDateFormat.format(date)
 
     fun isFallbackActive(@Suppress("UNUSED_PARAMETER") context: Context): Boolean = false
+
+    fun beginTodaySession(context: Context) {
+        val entries = loadEntries(context)
+        if (entries.isEmpty()) return
+        val dateKey = parserDateFormat.format(Date())
+        val offset = SessionOffsetStore.consumeNext(context, dateKey, entries.size)
+        activeSessionOffsets.clear()
+        activeSessionOffsets[dateKey] = offset
+    }
+
+    private fun computeSessionOffset(
+        context: Context,
+        dateKey: String,
+        size: Int,
+        date: Date
+    ): Int {
+        if (size <= 0) return 0
+        activeSessionOffsets[dateKey]?.let { return it }
+        val todayCal = Calendar.getInstance()
+        val targetCal = Calendar.getInstance().apply { time = date }
+        val isToday = todayCal.get(Calendar.YEAR) == targetCal.get(Calendar.YEAR) &&
+            todayCal.get(Calendar.DAY_OF_YEAR) == targetCal.get(Calendar.DAY_OF_YEAR)
+        return if (isToday) {
+            SessionOffsetStore.current(context, dateKey, size)
+        } else {
+            0
+        }
+    }
 
     private fun loadEntries(context: Context): List<BibelVersData> {
         cachedEntries?.let { return it }
@@ -142,6 +177,42 @@ object BibelVersRepository {
             }
             return order
         }
+    }
+
+    private object SessionOffsetStore {
+        fun consumeNext(context: Context, dateKey: String, size: Int): Int {
+            if (size <= 0) return 0
+            val prefs = context.getSharedPreferences(SESSION_PREFS, Context.MODE_PRIVATE)
+            val nextKey = SESSION_NEXT_PREFIX + dateKey
+            val currentKey = SESSION_CURRENT_PREFIX + dateKey
+            val nextRaw = prefs.getInt(nextKey, 0)
+            val next = positiveModulo(nextRaw, size)
+            val newNext = (next + 1) % size
+            prefs.edit {
+                putInt(currentKey, next)
+                putInt(nextKey, newNext)
+            }
+            return next
+        }
+
+        fun current(context: Context, dateKey: String, size: Int): Int {
+            if (size <= 0) return 0
+            val prefs = context.getSharedPreferences(SESSION_PREFS, Context.MODE_PRIVATE)
+            val currentKey = SESSION_CURRENT_PREFIX + dateKey
+            val nextKey = SESSION_NEXT_PREFIX + dateKey
+            val raw = if (prefs.contains(currentKey)) {
+                prefs.getInt(currentKey, 0)
+            } else {
+                prefs.getInt(nextKey, 0)
+            }
+            return positiveModulo(raw, size)
+        }
+    }
+
+    private fun positiveModulo(value: Int, size: Int): Int {
+        if (size <= 0) return 0
+        val mod = value % size
+        return if (mod >= 0) mod else mod + size
     }
 }
 

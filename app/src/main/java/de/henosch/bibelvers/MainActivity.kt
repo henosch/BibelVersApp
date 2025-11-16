@@ -70,6 +70,9 @@ class MainActivity : BaseActivity() {
         ViewCompat.requestApplyInsets(binding.root)
 
         currentDate.time = Date()
+        if (savedInstanceState == null) {
+            BibelVersRepository.beginTodaySession(this)
+        }
         setupGestureDetection()
         setupKotelStreamButton()
 

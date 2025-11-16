@@ -25,6 +25,10 @@ Technische Hinweise:
 • Nach Änderungen an `docs/datenschutz.html` den Pages-Build anstoßen: `gh api repos/henosch/BibelVersApp/pages/builds --method POST` und kurz warten, bis `status":"built"` meldet.
 • Im Play Store exakt diese URL hinterlegen; sie entspricht bit-identisch der im APK eingebetteten `app/src/main/assets/datenschutz.html`.
 
+Changelog (Version 1.8):
+• Bei jedem App-Start am selben Tag erscheint nun ein neuer zufällig ausgewählter Vers aus dem über 1.000 Einträge umfassenden Fundus.
+• Die Tageshistorie bleibt stabil – Zurückblättern zeigt weiterhin denselben Vers wie zuvor.
+
 Changelog (Version 1.7):
 • Lesbarkeit der Vers-Referenzen verbessert: neue Schattenkanten und kleinere Schriftgröße, damit auch auf älteren Android-11-Displays alle Ziffern klar bleiben.
 • Autorenangaben rücken auf kleinen Displays weiter von der Bildschirmkante weg und passen sich dynamisch an besonders schmale Geräte an.
