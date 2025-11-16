@@ -161,6 +161,31 @@ class MainActivity : BaseActivity() {
                 binding.dateTextView.paddingBottom
             )
         }
+
+        adjustAuthorReferenceSpacing(widthDp)
+    }
+
+    private fun adjustAuthorReferenceSpacing(widthDp: Int) {
+        val targetPaddingEnd = when {
+            widthDp > 0 && widthDp <= 360 -> {
+                resources.getDimensionPixelSize(R.dimen.main_author_compact_end_padding)
+            }
+            widthDp > 0 && widthDp <= 411 -> {
+                resources.getDimensionPixelSize(R.dimen.main_author_small_screen_end_padding)
+            }
+            else -> 0
+        }
+        val verseViews = listOf(binding.bibelversVersTextView, binding.zusatzVersTextView)
+        verseViews.forEach { textView ->
+            if (textView.paddingEnd != targetPaddingEnd) {
+                textView.setPaddingRelative(
+                    textView.paddingStart,
+                    textView.paddingTop,
+                    targetPaddingEnd,
+                    textView.paddingBottom
+                )
+            }
+        }
     }
 
     private fun showPreviousDay() {

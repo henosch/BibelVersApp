@@ -6,6 +6,7 @@
     <color name="settings_ripple_color">#33ffffff</color>
     <color name="cross_fill">#f0e8d4</color>
     <color name="verse_reference_color">#d6c9ad</color>
+    <color name="reference_shadow_color">#CC000000</color>
     <color name="action_bar_text_color">#fff9e6</color>
     <color name="wall_status_bar_color">#1e2a47</color>
     <color name="wall_navigation_bar_color">#9d8569</color>

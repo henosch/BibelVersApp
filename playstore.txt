@@ -26,6 +26,11 @@ Technische Hinweise:
 • Im Play Store exakt diese URL hinterlegen; sie entspricht bit-identisch der im APK eingebetteten `app/src/main/assets/datenschutz.html`.
 
 
+Changelog (Version 1.7):
+• Lesbarkeit der Vers-Referenzen verbessert: neue Schattenkanten und kleinere Schriftgröße, damit auch auf älteren Android-11-Displays alle Ziffern klar bleiben.
+• Autorenangaben rücken auf kleinen Displays weiter von der Bildschirmkante weg und passen sich dynamisch an besonders schmale Geräte an.
+• Debug/Release-Builds aktualisiert (VersionCode 8 / VersionName 1.7) und auf allen Testgeräten (Pixel 9a/Pixel 10 Pro XL/OnePlus A6013) geprüft.
+
 Changelog (Version 1.6):
 • Entfernt versehentlich eingecheckte .DS_Store-Dateien und ergänzt automatische Bereinigung vor jedem Build.
 • `git_publish.sh` erstellt und aktualisiert Release-Tags inkl. Push über das Menü.

@@ -12,6 +12,9 @@
     <dimen name="settings_regular_radio_padding">4dp</dimen>
     <dimen name="main_small_date_end_margin">16dp</dimen>
     <dimen name="main_small_date_horizontal_padding">12dp</dimen>
+    <dimen name="main_author_small_screen_end_padding">20dp</dimen>
+    <dimen name="main_author_compact_end_padding">32dp</dimen>
+    <dimen name="main_reference_text_size">14sp</dimen>
     <dimen name="dedication_text_size_large">14sp</dimen>
     <dimen name="dedication_text_size_small">12sp</dimen>
 </resources>
