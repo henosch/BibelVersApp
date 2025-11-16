@@ -10,10 +10,6 @@
     <color name="settings_icon_tint">#1a237e</color>
     <color name="settings_ripple_color">#22000000</color>
     <color name="cross_fill">#FFFFFFFF</color>
-    <color name="action_bar_text_color">#111111</color>
     <color name="wall_status_bar_color">#e6f2ff</color>
     <color name="wall_navigation_bar_color">#f6dfbb</color>
-    <color name="settings_source_text_color">#3a66c9</color>
-    <color name="settings_hint_text_color">#4a4a4a</color>
-    <color name="time_value_color">#1a237e</color>
 </resources>

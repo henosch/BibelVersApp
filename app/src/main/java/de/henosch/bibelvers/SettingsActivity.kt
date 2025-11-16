@@ -13,6 +13,7 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.widget.CompoundButton
 import android.widget.Toast
+import android.graphics.Paint
 import android.graphics.Typeface
 import android.text.TextPaint
 import android.util.TypedValue
@@ -72,7 +73,7 @@ class SettingsActivity : BaseActivity() {
             setDisplayHomeAsUpEnabled(true)
             title = getString(R.string.settings_title)
         }
-        toolbar.navigationIcon?.setTint(ContextCompat.getColor(this, R.color.action_bar_text_color))
+        toolbar.navigationIcon?.setTint(ContextCompat.getColor(this, R.color.verse_reference_color))
         toolbar.setNavigationOnClickListener { finish() }
 
         val initialToolbarPaddingTop = toolbar.paddingTop
@@ -153,8 +154,8 @@ class SettingsActivity : BaseActivity() {
 
                 override fun updateDrawState(ds: TextPaint) {
                     super.updateDrawState(ds)
-                    ds.isUnderlineText = false
-                    ds.color = ContextCompat.getColor(this@SettingsActivity, R.color.settings_source_text_color)
+                    ds.isUnderlineText = true
+                    ds.color = ContextCompat.getColor(this@SettingsActivity, R.color.verse_text_color)
                 }
             }
             hintSpannable.setSpan(clickSpan, clickStart, clickStart + clickTarget.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
@@ -177,6 +178,7 @@ class SettingsActivity : BaseActivity() {
                 getString(R.string.settings_more_info),
                 HtmlCompat.FROM_HTML_MODE_LEGACY
             )
+            paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
             setOnClickListener {
                 startActivity(Intent(this@SettingsActivity, DatenschutzActivity::class.java))
             }
@@ -297,7 +299,6 @@ class SettingsActivity : BaseActivity() {
 
         recordDefaultTopMargin(binding.pushSwitch)
         recordDefaultTopMargin(binding.timeLabel)
-        recordDefaultTopMargin(binding.randomVerseTitle)
         recordDefaultTopMargin(binding.randomVerseSwitch)
         recordDefaultTopMargin(binding.randomVerseHint)
         recordDefaultTopMargin(binding.themeLabel)
@@ -335,7 +336,6 @@ class SettingsActivity : BaseActivity() {
 
             setTopMargin(binding.pushSwitch, R.dimen.settings_compact_push_top_margin)
             setTopMargin(binding.timeLabel, R.dimen.settings_compact_section_spacing)
-            setTopMargin(binding.randomVerseTitle, R.dimen.settings_compact_section_spacing)
             setTopMargin(binding.randomVerseSwitch, R.dimen.settings_compact_random_spacing)
             setTopMargin(binding.randomVerseHint, R.dimen.settings_compact_random_spacing)
             setTopMargin(binding.themeLabel, R.dimen.settings_compact_theme_spacing)
@@ -369,7 +369,6 @@ class SettingsActivity : BaseActivity() {
 
         restoreTopMargin(binding.pushSwitch)
         restoreTopMargin(binding.timeLabel)
-        restoreTopMargin(binding.randomVerseTitle)
         restoreTopMargin(binding.randomVerseSwitch)
         restoreTopMargin(binding.randomVerseHint)
         restoreTopMargin(binding.themeLabel)
@@ -390,7 +389,6 @@ class SettingsActivity : BaseActivity() {
         )
         setTextSize(binding.pushSwitch, titleSizePx)
         setTextSize(binding.timeLabel, titleSizePx)
-        setTextSize(binding.randomVerseTitle, titleSizePx)
         setTextSize(binding.randomVerseSwitch, titleSizePx)
         setTextSize(binding.themeLabel, titleSizePx)
         setTextSize(binding.pushHintTextView, bodySizePx)
@@ -398,7 +396,8 @@ class SettingsActivity : BaseActivity() {
         setTextSize(binding.dataSourceTextView, bodySizePx)
         setTextSize(binding.projectInfoTextView, bodySizePx)
         setTextSize(binding.streamSourceTextView, bodySizePx)
-        setTextSize(binding.timeValue, bodySizePx)
+        val timeValueSizePx = resources.getDimension(R.dimen.settings_time_value_text_size)
+        setTextSize(binding.timeValue, timeValueSizePx)
     }
 
     private fun setTextSize(view: TextView, sizePx: Float) {

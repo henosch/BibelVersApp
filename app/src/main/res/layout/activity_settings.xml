@@ -19,7 +19,7 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:title="@string/settings_title"
-        app:titleTextColor="@color/action_bar_text_color"/>
+        app:titleTextColor="@color/verse_reference_color"/>
 
     <ScrollView
         android:id="@+id/settingsScrollView"
@@ -44,6 +44,8 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="4dp"
                 android:text="@string/settings_push_label"
+                android:textColor="@color/verse_reference_color"
+                android:textStyle="bold"
                 app:thumbTint="@color/switch_thumb_blue"
                 app:trackTint="@color/switch_track_blue"/>
 
@@ -53,8 +55,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="@string/settings_push_hint"
-                android:textColor="@color/settings_hint_text_color"
-                android:textSize="12sp"/>
+                android:textColor="@color/verse_text_color"
+                android:textColorLink="@color/verse_text_color"
+                android:textSize="@dimen/settings_body_text_size_regular"/>
 
             <TextView
                 android:id="@+id/timeLabel"
@@ -62,6 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/settings_push_time_label"
+                android:textColor="@color/verse_reference_color"
                 android:textStyle="bold"/>
 
             <LinearLayout
@@ -76,35 +80,33 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:textColor="@color/time_value_color"
-                    android:textSize="14sp"
+                    android:textColor="@color/verse_reference_color"
+                    android:textSize="@dimen/settings_time_value_text_size"
+                    android:textStyle="bold"
                     tools:text="08:00 Uhr"/>
 
                 <Button
                     android:id="@+id/timeButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/settings_push_time_button"/>
+                    android:text="@string/settings_push_time_button"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/settings_body_text_size_regular"
+                    android:textColor="@color/verse_text_color"/>
 
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/randomVerseTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="28dp"
-                android:text="@string/settings_random_verse_title"
-                android:textColor="@color/settings_source_text_color"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
 
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/randomVerseSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="20dp"
                 android:text="@string/settings_random_verse_label"
-                android:textColor="@color/settings_source_text_color"/>
+                android:textColor="@color/verse_reference_color"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:thumbTint="@color/switch_thumb_blue"
+                app:trackTint="@color/switch_track_blue"/>
 
             <TextView
                 android:id="@+id/randomVerseHint"
@@ -112,8 +114,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="@string/settings_random_verse_hint"
-                android:textColor="@color/settings_hint_text_color"
-                android:textSize="12sp"/>
+                android:textColor="@color/verse_text_color"
+                android:textSize="@dimen/settings_body_text_size_regular"/>
 
             <TextView
                 android:id="@+id/themeLabel"
@@ -121,6 +123,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
                 android:text="@string/settings_theme_label"
+                android:textColor="@color/verse_reference_color"
                 android:textStyle="bold"/>
 
             <TextView
@@ -128,7 +131,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:text="@string/settings_theme_hint"
-                android:textColor="@color/settings_hint_text_color"
+                android:textColor="@color/verse_text_color"
                 android:textSize="12sp"/>
 
             <RadioGroup
@@ -142,6 +145,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/settings_theme_system"
+                    android:textColor="@color/verse_text_color"
                     app:buttonTint="@color/radio_tint_blue"/>
 
                 <RadioButton
@@ -150,6 +154,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="@string/settings_theme_light"
+                    android:textColor="@color/verse_text_color"
                     app:buttonTint="@color/radio_tint_blue"/>
 
                 <RadioButton
@@ -158,6 +163,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:text="@string/settings_theme_dark"
+                    android:textColor="@color/verse_text_color"
                     app:buttonTint="@color/radio_tint_blue"/>
 
             </RadioGroup>
@@ -168,9 +174,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/settings_data_source"
-                android:textColor="@color/settings_hint_text_color"
-                android:textColorLink="@color/settings_source_text_color"
-                android:textSize="12sp"
+                android:textColor="@color/verse_text_color"
+                android:textColorLink="@color/verse_text_color"
+                android:textSize="@dimen/settings_body_text_size_regular"
                 android:linksClickable="true"/>
 
             <TextView
@@ -179,9 +185,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/settings_more_info"
-                android:textColor="@color/settings_hint_text_color"
-                android:textColorLink="@color/settings_source_text_color"
-                android:textSize="12sp"
+                android:textColor="@color/verse_text_color"
+                android:textColorLink="@color/verse_text_color"
+                android:textSize="@dimen/settings_body_text_size_regular"
                 android:linksClickable="true"/>
 
             <TextView
@@ -190,9 +196,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:text="@string/settings_stream_source"
-                android:textColor="@color/settings_hint_text_color"
-                android:textColorLink="@color/settings_source_text_color"
-                android:textSize="12sp"
+                android:textColor="@color/verse_text_color"
+                android:textColorLink="@color/verse_text_color"
+                android:textSize="@dimen/settings_body_text_size_regular"
                 android:linksClickable="true"/>
 
             <TextView
@@ -205,8 +211,8 @@
                 android:text="@string/settings_dedication"
                 android:textAlignment="center"
                 android:fontFamily="@font/basil"
-                android:textColor="@color/settings_hint_text_color"
-                android:textSize="12sp"
+                android:textColor="@color/verse_reference_color"
+                android:textSize="@dimen/dedication_text_size_large"
                 android:textStyle="bold"
                 app:fontFamily="@font/basil"/>
 

@@ -18,8 +18,9 @@
     <dimen name="main_reference_text_size">14sp</dimen>
     <dimen name="settings_title_text_size_regular">16sp</dimen>
     <dimen name="settings_title_text_size_compact">14sp</dimen>
-    <dimen name="settings_body_text_size_regular">12sp</dimen>
+    <dimen name="settings_body_text_size_regular">13sp</dimen>
     <dimen name="settings_body_text_size_compact">11sp</dimen>
-    <dimen name="dedication_text_size_large">12sp</dimen>
-    <dimen name="dedication_text_size_small">10sp</dimen>
+    <dimen name="settings_time_value_text_size">20sp</dimen>
+    <dimen name="dedication_text_size_large">16sp</dimen>
+    <dimen name="dedication_text_size_small">14sp</dimen>
 </resources>
