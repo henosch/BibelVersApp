@@ -123,6 +123,8 @@ class SettingsActivity : BaseActivity() {
         val pushEnabled = prefs.getBoolean(KEY_PUSH_NOTIFICATIONS, false)
         binding.pushSwitch.isChecked = pushEnabled
         updateTimeDisplay(prefs.getString(KEY_PUSH_TIME, DEFAULT_TIME) ?: DEFAULT_TIME)
+        binding.randomVerseSwitch.isChecked =
+            prefs.getBoolean(BaseActivity.KEY_RANDOM_VERSE_MODE, true)
 
         captureDefaultSpacing()
         applyCompactLayoutIfNeeded()
@@ -197,6 +199,10 @@ class SettingsActivity : BaseActivity() {
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
         }
         binding.pushSwitch.setOnCheckedChangeListener(pushChangeListener)
+
+        binding.randomVerseSwitch.setOnCheckedChangeListener { _, isChecked ->
+            prefs.edit { putBoolean(BaseActivity.KEY_RANDOM_VERSE_MODE, isChecked) }
+        }
 
         if (pushEnabled) {
             scheduleNotifications()

@@ -71,7 +71,12 @@ class MainActivity : BaseActivity() {
 
         currentDate.time = Date()
         if (savedInstanceState == null) {
-            BibelVersRepository.beginTodaySession(this)
+            if (getSharedPreferences(BaseActivity.PREFS_FILE, MODE_PRIVATE).getBoolean(
+                    BaseActivity.KEY_RANDOM_VERSE_MODE, true
+                )
+            ) {
+                BibelVersRepository.beginTodaySession(this)
+            }
         }
         setupGestureDetection()
         setupKotelStreamButton()

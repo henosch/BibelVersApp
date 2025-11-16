@@ -36,4 +36,7 @@
     <string name="settings_theme_system">Systemstandard</string>
     <string name="settings_theme_light">Hell</string>
     <string name="settings_theme_dark">Dunkel</string>
+    <string name="settings_random_verse_title">Neue Verse pro Start</string>
+    <string name="settings_random_verse_label">Bei jedem App-Start neuen Vers zeigen</string>
+    <string name="settings_random_verse_hint">Deaktivieren, um pro Tag nur einen Vers zu behalten (z. B. für Notizen).</string>
 </resources>

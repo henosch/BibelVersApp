@@ -33,7 +33,13 @@ object BibelVersRepository {
         val dayIndex = calendar.get(Calendar.DAY_OF_YEAR) - 1
         val order = VerseOrderManager.orderForYear(context, year, entries.size)
         val formattedDate = parserDateFormat.format(date)
-        val offset = computeSessionOffset(context, formattedDate, entries.size, calendar.time)
+        val prefs = context.getSharedPreferences(BaseActivity.PREFS_FILE, Context.MODE_PRIVATE)
+        val randomActive = prefs.getBoolean(BaseActivity.KEY_RANDOM_VERSE_MODE, true)
+        val offset = if (randomActive) {
+            computeSessionOffset(context, formattedDate, entries.size, calendar.time)
+        } else {
+            0
+        }
         val normalizedDayIndex = positiveModulo(dayIndex, entries.size)
         val orderIndex = (normalizedDayIndex + offset) % entries.size
         val entryIndex = order[orderIndex]
