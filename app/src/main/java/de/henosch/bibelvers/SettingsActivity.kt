@@ -21,6 +21,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
@@ -44,6 +45,7 @@ class SettingsActivity : BaseActivity() {
     private lateinit var binding: ActivitySettingsBinding
     private lateinit var pushChangeListener: CompoundButton.OnCheckedChangeListener
     private val prefs by lazy { getSharedPreferences(BaseActivity.PREFS_FILE, MODE_PRIVATE) }
+    private var activeThemeMode: String = BaseActivity.THEME_MODE_SYSTEM
     private val defaultTopMargins = mutableMapOf<Int, Int>()
     private var defaultScrollPaddingStart = 0
     private var defaultScrollPaddingEnd = 0
@@ -120,6 +122,9 @@ class SettingsActivity : BaseActivity() {
             )
             insets
         }
+
+        activeThemeMode = prefs.getString(BaseActivity.KEY_THEME_MODE, BaseActivity.THEME_MODE_SYSTEM)
+            ?: BaseActivity.THEME_MODE_SYSTEM
 
         val pushEnabled = prefs.getBoolean(KEY_PUSH_NOTIFICATIONS, false)
         binding.pushSwitch.isChecked = pushEnabled
@@ -255,10 +260,7 @@ class SettingsActivity : BaseActivity() {
     }
 
     private fun setupThemeSelection() {
-        val currentTheme = prefs.getString(BaseActivity.KEY_THEME_MODE, BaseActivity.THEME_MODE_SYSTEM) ?: BaseActivity.THEME_MODE_SYSTEM
-
-        // Setze aktuelles Theme
-        when (currentTheme) {
+        when (activeThemeMode) {
             BaseActivity.THEME_MODE_LIGHT -> binding.themeLight.isChecked = true
             BaseActivity.THEME_MODE_DARK -> binding.themeDark.isChecked = true
             else -> binding.themeSystem.isChecked = true
@@ -273,10 +275,16 @@ class SettingsActivity : BaseActivity() {
                 else -> BaseActivity.THEME_MODE_SYSTEM
             }
 
-            if (newTheme != currentTheme) {
+            if (newTheme != activeThemeMode) {
                 prefs.edit { putString(BaseActivity.KEY_THEME_MODE, newTheme) }
-                // Activity neu erstellen um Theme anzuwenden
-                recreate()
+                activeThemeMode = newTheme
+                val mode = when (newTheme) {
+                    BaseActivity.THEME_MODE_LIGHT -> AppCompatDelegate.MODE_NIGHT_NO
+                    BaseActivity.THEME_MODE_DARK -> AppCompatDelegate.MODE_NIGHT_YES
+                    else -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+                }
+                AppCompatDelegate.setDefaultNightMode(mode)
+                delegate.applyDayNight()
             }
         }
     }
