@@ -26,9 +26,9 @@
 
 ## Commit- und Pull-Request-Richtlinien
 - Die Historie nutzt kurze imperative Betreffzeilen (z. B. `Initial commit`). Betreff unter ca. 72 Zeichen halten und beschreiben, *was* geändert wurde; Details optional im Body ergänzen.
-- Issues im Commit-Body referenzieren, wenn vorhanden, und Nutzer:innen auf geänderte Assets oder Ressourcen hinweisen, die QA benötigen.
+- Issues im Commit-Body referenzieren, wenn vorhanden, und Nutzer auf geänderte Assets oder Ressourcen hinweisen, die QA benötigen.
 - Pull Requests erklären Motivation, listen ausgeführte Befehle (`lint`, `testDebugUnitTest`, Emulator-Smoke-Tests) und enthalten bei UI-Änderungen Screenshots oder Aufzeichnungen.
-- Reviewer:innen aus den zuständigen Bereichen (UI, Repositories, Scheduling) taggen, damit Domain-Expert:innen freigeben können.
+- Reviewer aus den zuständigen Bereichen (UI, Repositories, Scheduling) taggen, damit Domain-Experten freigeben können.
 
 ## Konfigurationshinweise
 - `local.properties` bleibt maschinenspezifisch. Auf `ANDROID_HOME`/`ANDROID_SDK_ROOT` vertrauen oder die Datei lokal anpassen, ohne Secrets einzuchecken.
