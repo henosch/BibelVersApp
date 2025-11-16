@@ -25,43 +25,7 @@ Technische Hinweise:
 • Nach Änderungen an `docs/datenschutz.html` den Pages-Build anstoßen: `gh api repos/henosch/BibelVersApp/pages/builds --method POST` und kurz warten, bis `status":"built"` meldet.
 • Im Play Store exakt diese URL hinterlegen; sie entspricht bit-identisch der im APK eingebetteten `app/src/main/assets/datenschutz.html`.
 
-
 Changelog (Version 1.7):
 • Lesbarkeit der Vers-Referenzen verbessert: neue Schattenkanten und kleinere Schriftgröße, damit auch auf älteren Android-11-Displays alle Ziffern klar bleiben.
 • Autorenangaben rücken auf kleinen Displays weiter von der Bildschirmkante weg und passen sich dynamisch an besonders schmale Geräte an.
 • Debug/Release-Builds aktualisiert (VersionCode 8 / VersionName 1.7) und auf allen Testgeräten (Pixel 9a/Pixel 10 Pro XL/OnePlus A6013) geprüft.
-
-Changelog (Version 1.6):
-• Entfernt versehentlich eingecheckte .DS_Store-Dateien und ergänzt automatische Bereinigung vor jedem Build.
-• `git_publish.sh` erstellt und aktualisiert Release-Tags inkl. Push über das Menü.
-• GitHub-Pages-Konfiguration (main/docs) wird jetzt automatisch gesetzt und per Menüpunkt angezeigt samt fertiger URL.
-
-Changelog (Version 1.5):
-• Schabbat-Sperre für die Livestream-Schaltfläche präzisiert (Winter 17–17 Uhr, Sommer 19–19 Uhr) mit optionaler Override-Geste in den Einstellungen.
-• Integrierte Datenschutzansicht im App-Stil inkl. WebView, aktualisierte Texte und hellblauem Theme.
-• Feature-Grafik und Texte an das BibelVerse-Konzept angepasst.
-• Diverse Bugfixes beim Offline-Vers-Handling und in den Hilfsskripten (`backup.sh`, `build_bibelverse_xml.py`).
-
-Changelog (Version 1.4):
-• Umstellung auf die neue BibelVerse.xml: Alle Tagesverse liegen lokal in der App, werden einmal pro Jahr zufällig durchgemischt und benötigen keinen Download mehr.
-• Neuer Daten-Parser, vereinfachtes Repository und entschlackte Einstellungen – der rote „Fallback“-Modus entfällt, weil keine Serverfehler mehr auftreten können.
-• Alle Hinweise und Texte wurden auf „Bibelvers“ umgestellt, inklusive Datenschutzhinweisen und Play-Store-Beschreibung.
-• GitHub-Skript `scripts/build_bibelverse_xml.py` erlaubt weiterhin das Generieren/Neu-Mischen der Verse.
-• Diverse technische Updates (VersionCode 5 / VersionName 1.4, geringere Abhängigkeiten und aufgeräumte Tests).
-
-Changelog (Version 1.3):
-• Material Components entfernt und vollständig auf AppCompat umgestellt. Dadurch entfallen die veralteten Edge-to-Edge-APIs, die App ist deutlich kleiner und kompatibel mit Android 15.
-• Jahresvorab-Download überarbeitet: Für das Folgejahr wird erst ab November des laufenden Jahres im Hintergrund geladen; fehlgeschlagene Versuche werden ab November automatisch erneut gestartet.
-• Download-Cache repariert: Wenn ein Jahr zuvor fehlgeschlagen ist, wird der Abruf nun erneut ausgeführt, statt dauerhaft blockiert zu werden.
-• Offline-Fallback erweitert – die neuen Verse  lagen damals direkt im APK, sodass auch ohne Internet der komplette Jahreswechsel funktionierte.
-• Diverse technische Updates (VersionCode 4 / VersionName 1.3, aktualisierte Tests & Builds).
-
-Changelog (Version 1.1):
-• Live-Stream-Bedienung verbessert: Der Videostream blendet keine funktionslosen Vor-/Zurück-Tasten mehr ein und kehrt mit einem Zurück-Tap sofort zur App zurück.
-• App- und Stream-Icons überarbeitet: Das Buch-Symbol orientiert sich am neuen Store-Logo und der Kotel-Button zeigt ein klar erkennbares Kreuz.
-• Einstellungen verweisen direkt auf die Datenquelle und die Livestream-Quelle thekotel.org; der Push-Hinweis enthält jetzt den Testversand und die Widmung in Basil-Schrift.
-• Darstellung überarbeitet: Verse, Datum, Klagemauer-Hintergrund und Status-/Navigationsleisten wurden für helles und dunkles Design neu abgestimmt.
-• Einstellungen erhalten denselben Hintergrund wie der Startscreen, ein klar lesbares „Zurück“ sowie ein verbessertes Farbkonzept (inkl. Uhrzeit/Quelle im Dark Mode).
-• Hochformat-Fix für Haupt- und Einstellungsbildschirm; nur der Livestream rotiert weiterhin ins Querformat.
-• Automatischer Download der damaligen Verse-Jahrgänge getestet und abgesichert (MockWebServer-Unit-Test).
-• Build optimiert: Ressourcen- und Code-Shrinking aktiviert, aktualisierte Bibliotheken und Toolchain.
