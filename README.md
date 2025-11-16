@@ -5,6 +5,7 @@ Eine kleine Android-App, die jeden Tag einen zufällig kombinierten Bibelvers (A
 ## Features
 - BibelVerse: vollständig offline verfügbare Verspaare aus AT und NT, einmal pro Jahr zufällig durchgemischt, damit keiner doppelt vorkommt
 - Livestream-Auswahl (Kotel-Kameras) mit randloser Wiedergabe im Querformat
+- Akkusparender Zufallsmodus: optional neuer Vers nach >7 Minuten Hintergrundzeit oder bei jedem App-Start – gesteuert über einen einzigen Schalter
 - Wischgesten (links/rechts) zum Blättern zwischen Tagen
 - Benachrichtigungen für den Tagesvers (inkl. Testtrigger über die Datenquelle)
 - Shabbat-Hinweis am Freitagabend/Samstag
