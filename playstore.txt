@@ -15,7 +15,7 @@ Highlights:
 • Keine Werbung, keine Nutzerkonten, keine Datenerfassung
 
 Technische Hinweise:
-• Unterstützt Android 8.0 (API 26) bis Android 15 (API 36)
+• Unterstützt Android 6.0 (API 23) bis Android 16+ (API 36)
 • Läuft auf Smartphones und Tablets (Portrait-optimiert, Stream im Querformat)
 • Netzwerkzugriff ausschließlich über HTTPS, keine Drittanbieter-SDKs
 • APK-Größe ca. 1,2 MB (Debug-Build: app/build/outputs/apk/debug/app-debug.apk)
