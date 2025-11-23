@@ -30,11 +30,7 @@ object NotificationScheduler {
         val canScheduleExact = Build.VERSION.SDK_INT < Build.VERSION_CODES.S || alarmManager.canScheduleExactAlarms()
 
         if (canScheduleExact) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent)
-            } else {
-                alarmManager.setExact(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent)
-            }
+            alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent)
         } else {
             Log.w(TAG, "Exact alarm not permitted; scheduling inexact alarm")
             alarmManager.set(AlarmManager.RTC_WAKEUP, triggerTime, pendingIntent)
