@@ -29,7 +29,6 @@ Technische Hinweise:
 Changelog (Version 1.9):
 • Option „Neue Verse pro Start“ kombiniert nun den 7-Minuten-Check mit einem energiesparenden Verhalten (keine Timer, nur kurze Prüfung beim Wiederkehren).
 • Schriftgrößen und Abstände in den Einstellungen für kleine Displays (z. B. OnePlus 6T) weiter reduziert.
-• Play-Store-Texte aktualisiert und Highlights erweitert.
 
 Changelog (Version 1.8):
 • Bei jedem App-Start am selben Tag erscheint nun ein neuer zufällig ausgewählter Vers aus dem über 1.000 Einträge umfassenden Fundus.

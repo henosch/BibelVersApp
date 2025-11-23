@@ -31,3 +31,5 @@ rsync -a "${EXCLUDES[@]}" "${SCRIPT_DIR}/" "${BACKUP_DIR}/"
 tar -czf "${ARCHIVE_PATH}" -C "${DESKTOP_DIR}" "${BACKUP_BASENAME}"
 
 printf 'Backup erstellt: %s\nArchiv erstellt: %s\n' "${BACKUP_DIR}" "${ARCHIVE_PATH}"
+rm -rf "${BACKUP_DIR}/"
+printf 'Ordner gelöscht: %s\n' "${BACKUP_DIR}"
