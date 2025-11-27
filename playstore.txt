@@ -4,38 +4,72 @@ Kurzbeschreibung:
 Täglichen Bibelvers lesen und Livestreams von der Kotel erleben.
 
 Ausführliche Beschreibung:
-BibelVers schenkt dir jeden Tag einen neuen geistlichen Impuls. Über 1.000 Verse aus Altem und Neuem Testament liegen vollständig offline im Paket und werden zufällig zu Tageslosungen kombiniert – ganz ohne Serverabruf. Holst du die App nach längerer Pause (ab ca. sieben Minuten) wieder in den Vordergrund, erscheint automatisch ein frischer Vers; in den Einstellungen lässt sich dieses Verhalten auf Wunsch abschalten, sodass pro Tag nur ein Text bleibt. Zusätzlich zeigt die App mehrere Livestreams der Klagemauer (Kotel) in Jerusalem. Eine optionale Benachrichtigung erinnert dich zur gewünschten Tageszeit, die Verse selbst funktionieren komplett offline; nur die Streams benötigen Internet.
+BibelVers schenkt dir jeden Tag einen neuen geistlichen Impuls. Über 1.000 Verse aus Altem und Neuem Testament liegen vollständig offline im Paket und werden zufällig zu Tageslosungen kombiniert – ganz ohne Serverabruf. Holst du die App nach längerer Pause (ab ca. sieben Minuten) wieder in den Vordergrund, erscheint automatisch ein frischer Vers. In den Einstellungen lässt sich dieses Verhalten auf Wunsch abschalten, sodass pro Tag nur ein Text bleibt. Zusätzlich zeigt die App mehrere Livestreams der Klagemauer (Kotel) in Jerusalem. Eine optionale Benachrichtigung erinnert dich zur gewünschten Tageszeit, die Verse selbst funktionieren komplett offline und nur die Streams benötigen Internet.
 
 Highlights:
 • Lokal generierte BibelVerse (Verspaar aus Altem und Neuem Testament) ohne externe Abhängigkeiten
-• Livestream-Auswahl verschiedener Kotel-Kameras in Jerusalem
-• Shabbat-Hinweis sowie Offline-Unterstützung
-• Optionaler Wechselmodus: nach >7 Minuten Hintergrundzeit automatisch neuer Vers (abschaltbar) und stromsparend, da nur beim Zurückkehren geprüft wird
-• Optionale Push-Benachrichtigung zur Wunschzeit
+• Auswahl an Livestreams verschiedener Kotel Kameras in Jerusalem
+• Shabbat Hinweis sowie Offline Unterstützung
+• Optionaler Wechselmodus: nach mehr als sieben Minuten Hintergrundzeit automatisch neuer Vers (abschaltbar) und stromsparend, da nur beim Zurückkehren geprüft wird
+• Optionale Push Benachrichtigung zur Wunschzeit
 • Keine Werbung, keine Nutzerkonten, keine Datenerfassung
 
 Technische Hinweise:
 • Unterstützt Android 6.0 (API 23) bis Android 16+ (API 36)
-• Läuft auf Smartphones und Tablets (Portrait-optimiert, Stream im Querformat)
-• Netzwerkzugriff ausschließlich über HTTPS, keine Drittanbieter-SDKs
-• APK-Größe ca. 1,2 MB (Debug-Build: app/build/outputs/apk/debug/app-debug.apk)
+• Läuft auf Smartphones und Tablets (für das Portrait Format optimiert, Stream im Querformat)
+• Netzwerkzugriff ausschließlich über HTTPS, keine Drittanbieter SDKs
+• APK Größe ca. 1,2 MB
 
-## Hinweis für Play-Store-Listing
-• Die verlinkte Datenschutzerklärung liegt auf GitHub Pages unter https://henosch.github.io/BibelVersApp/datenschutz.html.
-• Pages ist im Repository auf `main` mit dem Unterordner `docs/` konfiguriert (`gh api repos/henosch/BibelVersApp/pages --method POST -f build_type=legacy -f source[branch]=main -f source[path]=/docs`).
-• Nach Änderungen an `docs/datenschutz.html` den Pages-Build anstoßen: `gh api repos/henosch/BibelVersApp/pages/builds --method POST` und kurz warten, bis `status":"built"` meldet.
-• Im Play Store exakt diese URL hinterlegen; sie entspricht bit-identisch der im APK eingebetteten `app/src/main/assets/datenschutz.html`.
+## Hinweis für Play Store Listing
+• Die verlinkte Datenschutzerklärung liegt auf https://henosch.github.io/BibelVersApp/datenschutz.html und entspricht bit identisch der Datei app/src/main/assets/datenschutz.html.
+• Im Repository ist Pages auf den Branch main und den Ordner docs eingestellt.
+• Nach Änderungen an docs/datenschutz.html den Pages Build erneut anstoßen, etwa mit gh api repos/henosch/BibelVersApp/pages/builds und anschließend den Status built abwarten.
 
 Changelog (Version 1.9):
-• Option „Neue Verse pro Start“ kombiniert nun den 7-Minuten-Check mit einem energiesparenden Verhalten (keine Timer, nur kurze Prüfung beim Wiederkehren).
-• Schriftgrößen und Abstände in den Einstellungen für kleine Displays (z. B. OnePlus 6T) weiter reduziert.
+• Lifecycle Komponenten aktualisiert, Mindestanforderung jetzt Android 6.0 (API 23).
+• Benachrichtigungen laufen zuverlässiger, da die App setExactAndAllowWhileIdle verwendet.
+• Play Store Beschreibung und Hinweise auf den aktuellen Funktionsumfang abgestimmt.
 
 Changelog (Version 1.8):
-• Bei jedem App-Start am selben Tag erscheint nun ein neuer zufällig ausgewählter Vers aus dem über 1.000 Einträge umfassenden Fundus.
-• Die Tageshistorie bleibt stabil – Zurückblättern zeigt weiterhin denselben Vers wie zuvor.
-• Nach ca. sieben Minuten im Hintergrund zieht die App automatisch einen neuen Vers; das Verhalten lässt sich in den Einstellungen ein- oder ausschalten.
+• Bei jedem App Start am selben Tag erscheint nun ein neuer zufällig ausgewählter Vers aus dem über 1.000 Einträge umfassenden Fundus.
+• Die Tageshistorie bleibt stabil und Zurückblättern zeigt weiterhin denselben Vers wie zuvor.
+• Nach rund sieben Minuten im Hintergrund zieht die App automatisch einen neuen Vers. Das Verhalten lässt sich in den Einstellungen deaktivieren.
 
 Changelog (Version 1.7):
-• Lesbarkeit der Vers-Referenzen verbessert: neue Schattenkanten und kleinere Schriftgröße, damit auch auf älteren Android-11-Displays alle Ziffern klar bleiben.
-• Autorenangaben rücken auf kleinen Displays weiter von der Bildschirmkante weg und passen sich dynamisch an besonders schmale Geräte an.
-• Debug/Release-Builds aktualisiert (VersionCode 8 / VersionName 1.7) und auf allen Testgeräten (Pixel 9a/Pixel 10 Pro XL/OnePlus A6013) geprüft.
+• Lesbarkeit der Vers Referenzen verbessert: neue Schattenkanten und kleinere Schriftgröße sorgen auch auf älteren Android 11 Geräten für klare Ziffern.
+• Autorenangaben rücken auf kleinen Displays weiter von der Bildschirmkante weg und passen sich besonders schmalen Geräten an.
+• Debug und Release Builds aktualisiert (VersionCode 8 / VersionName 1.7) und auf Pixel 9a, Pixel 10 Pro XL und OnePlus A6013 getestet.
+
+Changelog (Version 1.6):
+• Allgemeine Optimierungen und Fehlerbehebungen.
+
+Changelog (Version 1.5):
+• Schabbat Sperre für die Livestream Schaltfläche präzisiert (Winter 17 bis 17 Uhr, Sommer 19 bis 19 Uhr) mit optionaler Override Geste in den Einstellungen.
+• Integrierte Datenschutzerklärung im App Stil mit überarbeitetem hellblauen Theme.
+• Play Store Grafiken und Texte weiter verfeinert, Offline Verse Verhalten robuster umgesetzt.
+
+Changelog (Version 1.4):
+• Alle Tagesverse liegen nun vollständig lokal in der App und werden jährlich neu durchgemischt.
+• Parser und Repository vereinfacht, die Einstellungen verzichten auf den früheren Fallback Modus.
+• Sämtliche Hinweise und Texte verwenden konsequent die Bezeichnung BibelVers.
+
+Changelog (Version 1.3):
+• Material Components entfernt und vollständig auf AppCompat umgestellt, wodurch die APK kleiner wurde und Android 15 Unterstützung gesichert ist.
+• Jahresdownload für das Folgejahr startet erst ab November im Hintergrund und wiederholt fehlgeschlagene Versuche automatisch.
+• Download Cache und Offline Fallback überarbeitet, damit auch ohne Internet die kompletten Verse bereitstehen.
+• Diverse technische Aktualisierungen (VersionCode 4 / VersionName 1.3).
+
+Changelog (Version 1.2):
+• Interne Trennung zwischen Parsing und UI eingeführt, sodass neue Verse leichter eingebunden werden können.
+• Build Abläufe prüfen Abhängigkeiten automatisch und installieren fehlende SDK Komponenten.
+• Vorbereitung auf zufällig kombinierte Verse für kommende Releases sowie kleinere UI Polishes.
+
+Changelog (Version 1.1):
+• Livestream Bedienung verbessert: der Videostream blendet keine funktionslosen Vor oder Zurück Tasten mehr ein und ein Zurück Tipp führt sofort zur App.
+• App und Stream Icons überarbeitet, inklusive neuem Buch Symbol und klar erkennbarem Kreuz.
+• Einstellungen verweisen direkt auf Datenquelle und Livestream Quelle, Push Hinweis enthält nun Testversand und Widmung in Basil Schrift.
+• Darstellung für helles und dunkles Design neu abgestimmt, inklusive Hintergrundbildern und Statusleisten.
+• Einstellungsbildschirm nutzt denselben Hintergrund wie der Startscreen, zeigt ein klares Zurück Element und ein verbessertes Farbkonzept.
+• Hochformat Fix für Haupt und Einstellungsbildschirm, nur der Livestream wechselt weiterhin ins Querformat.
+• Automatischer Download der damaligen Verse Jahrgänge getestet und abgesichert.
+• Build optimiert mit aktiviertem Ressourcen und Code Shrinking sowie aktualisierten Bibliotheken.

@@ -16,3 +16,4 @@ upload-keystore.jks
 command_reference.txt
 /scripts/build_bibelverse_xml.py
 /scripts/capture_screenshots.sh
+/scripts/*
