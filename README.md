@@ -1,11 +1,14 @@
 # BibelVers Android App
 
-Eine kleine Android-App, die jeden Tag einen zufällig kombinierten Bibelvers (Altes &amp; Neues Testament) aus einer lokal mitgelieferten Sammlung zeigt, dazu einen Livestream von der Klagemauer anbietet und optionale Push-Benachrichtigungen versendet.
+Eine kleine Android-App, die jeden Tag einen ausgewogenen Bibelvers-Paar (Altes &amp; Neues Testament) aus einer lokal mitgelieferten Sammlung zeigt, dazu einen Livestream von der Klagemauer anbietet und optionale Push-Benachrichtigungen versendet.
 
 ## Features
-- BibelVerse: vollständig offline verfügbare Verspaare aus AT und NT, einmal pro Jahr zufällig durchgemischt, damit keiner doppelt vorkommt
+- **Ausgewogene BibelVerse**: Offline verfügbare Verspaare aus AT und NT mit intelligenter Längen-Balance (langer AT-Vers + kurzer NT-Vers und umgekehrt)
+- **Duplikats-Vermeidung**: Keine doppelten Verse innerhalb eines Jahres dank optimierter Auswahl-Algorithmen
+- **Zwei Modi**: 
+  - **Sequential**: Durchgehende Jahresliste mit voroptimierter Balance
+  - **Random**: Ausgewogene Zufallsauswahl mit Duplikats-Vermeidung beim Wischen
 - Livestream-Auswahl (Kotel-Kameras) mit randloser Wiedergabe im Querformat
-- Akkusparender Zufallsmodus: optional neuer Vers nach >7 Minuten Hintergrundzeit oder bei jedem App-Start – gesteuert über einen einzigen Schalter
 - Wischgesten (links/rechts) zum Blättern zwischen Tagen
 - Benachrichtigungen für den Tagesvers (inkl. Testtrigger über die Datenquelle)
 - Shabbat-Hinweis am Freitagabend/Samstag
