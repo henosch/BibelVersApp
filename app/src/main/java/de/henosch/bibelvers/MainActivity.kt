@@ -132,7 +132,10 @@ class MainActivity : BaseActivity() {
             prefs.edit { putLong(BaseActivity.KEY_LAST_RETURN, now) }
             return
         }
-        if ((force && now - lastReturn >= 1_000) || (!force && now - lastReturn >= 7 * 60 * 1000)) {
+        // Die 7-Minuten-Logik wurde entfernt, da Random-Wischen jetzt ohnehin verschiedene Verse liefert
+        // und die neue Duplikats-Vermeidung im Random Mode ausreichend ist.
+        // Nur noch bei force=true (z.B. manueller Refresh) neu laden
+        if (force && now - lastReturn >= 1_000) {
             BibelVersRepository.beginTodaySession(this)
             displayVerseForDate(Date())
         }
