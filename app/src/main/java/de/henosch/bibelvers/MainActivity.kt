@@ -271,11 +271,28 @@ class MainActivity : BaseActivity() {
             binding.bibelversVersTextView.text = entry.bibelversVers
             binding.zusatzTextView.text = entry.zusatzText
             binding.zusatzVersTextView.text = entry.zusatzVers
+
+            binding.bibelversVersTextView.setOnClickListener { openBibleLink(entry.bibelversVers) }
+            binding.zusatzVersTextView.setOnClickListener { openBibleLink(entry.zusatzVers) }
         } else {
             binding.bibelversTextView.text = getString(R.string.bibelvers_not_found)
             binding.bibelversVersTextView.text = ""
             binding.zusatzTextView.text = ""
             binding.zusatzVersTextView.text = ""
+
+            binding.bibelversVersTextView.setOnClickListener(null)
+            binding.zusatzVersTextView.setOnClickListener(null)
+        }
+    }
+
+    private fun openBibleLink(reference: String) {
+        try {
+            val formattedRef = reference.replace(" ", "").replace(",", "%2C")
+            val url = "https://www.bibleserver.com/SLT/$formattedRef"
+            val intent = Intent(Intent.ACTION_VIEW, android.net.Uri.parse(url))
+            startActivity(intent)
+        } catch (e: Exception) {
+            Toast.makeText(this, "Fehler beim Öffnen des Links", Toast.LENGTH_SHORT).show()
         }
     }
 

@@ -25,6 +25,10 @@ Technische Hinweise:
 • Im Repository ist Pages auf den Branch main und den Ordner docs eingestellt.
 • Nach Änderungen an docs/datenschutz.html den Pages Build erneut anstoßen, etwa mit gh api repos/henosch/BibelVersApp/pages/builds und anschließend den Status built abwarten.
 
+Changelog (Version 2.2):
+• Die Quellenangaben bei den Versen sind jetzt interaktiv: Ein Tippen auf die Bibelstelle öffnet direkt den entsprechenden Text auf bibleserver.com in der SLT-Übersetzung.
+• Das visuelle Erscheinungsbild der Quellenangaben bleibt dabei unverändert dezent.
+
 Changelog (Version 1.9):
 • Lifecycle Komponenten aktualisiert, Mindestanforderung jetzt Android 6.0 (API 23).
 • Benachrichtigungen laufen zuverlässiger, da die App setExactAndAllowWhileIdle verwendet.
