@@ -1,6 +1,7 @@
 package de.henosch.bibelvers
 
 import android.content.Context
+import android.content.SharedPreferences
 import android.util.Log
 import android.util.Xml
 import androidx.core.content.edit
@@ -11,6 +12,8 @@ import java.util.Date
 import java.util.Locale
 import kotlin.random.Random
 import kotlin.text.Charsets
+import de.henosch.bibelvers.BaseActivity.Companion.PREFS_FILE
+import de.henosch.bibelvers.SettingsActivity.Companion.KEY_BIBLE_VERSION
 
 object BibelVersRepository {
 
@@ -23,7 +26,7 @@ object BibelVersRepository {
     private const val USED_VERSES_PREFS = "bibelverse_used"
     private const val USED_VERSES_KEY_PREFIX = "used_"
     private val parserDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.GERMANY)
-    private var cachedEntries: List<BibelVersData>? = null
+    private var cachedEntries: Pair<String, List<BibelVersData>>? = null
     private val activeSessionOffsets = mutableMapOf<String, Int>()
 
     fun getEntry(context: Context, date: Date, preferLocal: Boolean = false): BibelVersEntry? {
@@ -164,16 +167,29 @@ object BibelVersRepository {
         }
     }
 
+    fun invalidateCache() {
+        cachedEntries = null
+    }
+
     private fun loadEntries(context: Context): List<BibelVersData> {
-        cachedEntries?.let { return it }
-        val parsed = parseBibelVerseXml(context)
-        cachedEntries = parsed
+        val prefs = context.getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE)
+        val selectedBible = prefs.getString(KEY_BIBLE_VERSION, "Schlachter51.xml") ?: "Schlachter51.xml"
+
+        // Use a unique cache key for each bible version
+        val cacheKey = "cachedEntries_$selectedBible"
+        if (cachedEntries?.first == cacheKey) {
+            return cachedEntries?.second ?: emptyList()
+        }
+
+        val parsed = parseBibelVerseXml(context, selectedBible)
+        cachedEntries = Pair(cacheKey, parsed)
         return parsed
     }
 
-    private fun parseBibelVerseXml(context: Context): List<BibelVersData> {
+    // Now starting parseBibelVerseXml from here to correctly replace the full block.
+    private fun parseBibelVerseXml(context: Context, filename: String): List<BibelVersData> {
         return try {
-            context.assets.open("BibelVerse.xml").use { stream ->
+            context.assets.open(filename).use { stream ->
                 val parser = Xml.newPullParser().apply {
                     setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false)
                     setInput(stream.reader(Charsets.UTF_8))
@@ -205,7 +221,7 @@ object BibelVersRepository {
                 entries
             }
         } catch (e: Exception) {
-            Log.e(TAG, "Failed to parse BibelVerse.xml", e)
+            Log.e(TAG, "Failed to parse $filename", e)
             emptyList()
         }
     }
@@ -213,6 +229,7 @@ object BibelVersRepository {
     private fun sanitize(raw: String): String {
         if (raw.isBlank()) return raw.trim()
         var text = raw.trim()
+        text = text.replace(Regex("""\s*\(Pause\.?\)"""), "")
         text = text.replace(
             Regex(
                 """^/?\s*([A-Za-zÄÖÜäöüß]+\s*){0,2}(text|vers)\s*:/*\s*""",
@@ -267,7 +284,7 @@ object BibelVersRepository {
             }
             
             // Hole die Einträge für die Längen-Analyse
-            val entries = cachedEntries ?: parseBibelVerseXml(context)
+            val entries = loadEntries(context)
             
             val order = if (entries.isNotEmpty()) {
                 // Erstelle optimierte Reihenfolge basierend auf Verse-Längen

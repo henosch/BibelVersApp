@@ -11,6 +11,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.edit
@@ -25,6 +26,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+import androidx.core.net.toUri
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -40,6 +42,12 @@ class MainActivity : BaseActivity() {
     private val displayDateFormat = SimpleDateFormat("EEEE, dd. MMMM yyyy", Locale.GERMANY)
     private val prefs by lazy { getSharedPreferences(BaseActivity.PREFS_FILE, MODE_PRIVATE) }
     private var isShabbatActive = false
+
+    private val settingsLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == RESULT_OK && result.data?.getBooleanExtra(SettingsActivity.EXTRA_BIBLE_CHANGED, false) == true) {
+            refreshVerseAfterBibleChange()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,7 +93,7 @@ class MainActivity : BaseActivity() {
         setupKotelStreamButton()
 
         binding.settingsButton.setOnClickListener {
-            startActivity(Intent(this, SettingsActivity::class.java))
+            settingsLauncher.launch(Intent(this, SettingsActivity::class.java))
         }
 
         binding.dateTextView.setOnClickListener {
@@ -168,6 +176,11 @@ class MainActivity : BaseActivity() {
         })
 
         binding.root.setGestureDetector(gestureDetector)
+    }
+
+    private fun refreshVerseAfterBibleChange() {
+        BibelVersRepository.beginTodaySession(this)
+        displayVerseForDate(currentDate.time)
     }
 
     private fun adjustDateChipSpacing() {
@@ -289,7 +302,7 @@ class MainActivity : BaseActivity() {
         try {
             val formattedRef = reference.replace(" ", "").replace(",", "%2C")
             val url = "https://www.bibleserver.com/SLT/$formattedRef"
-            val intent = Intent(Intent.ACTION_VIEW, android.net.Uri.parse(url))
+            val intent = Intent(Intent.ACTION_VIEW, url.toUri())
             startActivity(intent)
         } catch (e: Exception) {
             Toast.makeText(this, "Fehler beim Öffnen des Links", Toast.LENGTH_SHORT).show()

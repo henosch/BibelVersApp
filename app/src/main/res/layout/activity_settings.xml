@@ -134,41 +134,41 @@
                 android:textColor="@color/verse_text_color"
                 android:textSize="12sp"/>
 
-            <RadioGroup
-                android:id="@+id/themeRadioGroup"
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/themeSpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="8dp"
+                android:minHeight="48dp"
+                android:backgroundTint="@color/verse_reference_color"/>
 
-                <RadioButton
-                    android:id="@+id/themeSystem"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/settings_theme_system"
-                    android:textColor="@color/verse_text_color"
-                    app:buttonTint="@color/radio_tint_blue"/>
-
-                <RadioButton
-                    android:id="@+id/themeLight"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/settings_theme_light"
-                    android:textColor="@color/verse_text_color"
-                    app:buttonTint="@color/radio_tint_blue"/>
-
-                <RadioButton
-                    android:id="@+id/themeDark"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="@string/settings_theme_dark"
-                    android:textColor="@color/verse_text_color"
-                    app:buttonTint="@color/radio_tint_blue"/>
-
-            </RadioGroup>
+            
+            <TextView
+                android:id="@+id/bibleVersionLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:text="@string/settings_bible_version_label"
+                android:textColor="@color/verse_reference_color"
+                android:textStyle="bold"/>
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/settings_bible_version_hint"
+                android:textColor="@color/verse_text_color"
+                android:textSize="12sp"/>
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/bibleVersionSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:minHeight="48dp"
+                android:backgroundTint="@color/verse_reference_color"/>
+
+<TextView
                 android:id="@+id/dataSourceTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -215,6 +215,17 @@
                 android:textSize="@dimen/dedication_text_size_large"
                 android:textStyle="bold"
                 app:fontFamily="@font/basil"/>
+
+            <TextView
+                android:id="@+id/appVersionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/verse_text_color"
+                android:textSize="12sp"
+                tools:text="Version 1.0"/>
+
 
         </LinearLayout>
     </ScrollView>

@@ -36,6 +36,31 @@
     <string name="settings_theme_system">Systemstandard</string>
     <string name="settings_theme_light">Hell</string>
     <string name="settings_theme_dark">Dunkel</string>
+    <string-array name="theme_mode_entries">
+        <item>@string/settings_theme_system</item>
+        <item>@string/settings_theme_light</item>
+        <item>@string/settings_theme_dark</item>
+    </string-array>
+    <string-array name="theme_mode_values">
+        <item>system</item>
+        <item>light</item>
+        <item>dark</item>
+    </string-array>
     <string name="settings_random_verse_label">Bei jedem App-Start neuen Vers zeigen</string>
     <string name="settings_random_verse_hint">Deaktivieren, um pro Tag nur einen Tagesvers anzuzeigen.</string>
+
+    <string name="settings_bible_version_label">Bibelübersetzung</string>
+    <string name="settings_bible_version_hint">Wähle die Bibelübersetzung</string>
+    <string name="settings_bible_changed_toast">Bibelübersetzung geändert.</string>
+    <string name="settings_app_version_label">Version: %s</string>
+    <string-array name="bible_versions_entries">
+        <item>Schlachter 1951</item>
+        <item>Luther 1912</item>
+        <item>Elberfelder 1871</item>
+    </string-array>
+    <string-array name="bible_versions_values">
+        <item>Schlachter51.xml</item>
+        <item>LUT1912.xml</item>
+        <item>ELB1871.xml</item>
+    </string-array>
 </resources>

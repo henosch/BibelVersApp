@@ -20,7 +20,6 @@ import android.util.TypedValue
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.content.res.AppCompatResources
@@ -38,8 +37,13 @@ import androidx.annotation.DimenRes
 import androidx.core.text.HtmlCompat
 import de.henosch.bibelvers.databinding.ActivitySettingsBinding
 import de.henosch.bibelvers.NotificationScheduler
+import de.henosch.bibelvers.BibelVersRepository
 import de.henosch.bibelvers.DailyVerseReceiver
 import java.util.Locale
+
+import android.widget.ArrayAdapter
+import android.widget.AdapterView
+
 
 class SettingsActivity : BaseActivity() {
 
@@ -51,6 +55,8 @@ class SettingsActivity : BaseActivity() {
     private var defaultScrollPaddingStart = 0
     private var defaultScrollPaddingEnd = 0
     private var dedicationTapCount = 0
+    private var bibleVersionChanged = false
+    private var suppressThemeSpinnerEvent = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -239,6 +245,43 @@ class SettingsActivity : BaseActivity() {
         }
 
         // Theme-Auswahl Setup
+        
+        // Bibel-Version Setup
+        val bibleVersions = resources.getStringArray(R.array.bible_versions_entries)
+        val bibleValues = resources.getStringArray(R.array.bible_versions_values)
+        val adapter = ArrayAdapter(this, R.layout.item_settings_spinner, bibleVersions)
+        adapter.setDropDownViewResource(R.layout.item_settings_spinner_dropdown)
+        binding.bibleVersionSpinner.adapter = adapter
+
+        val currentBible = prefs.getString(KEY_BIBLE_VERSION, "Schlachter51.xml")
+        val index = bibleValues.indexOf(currentBible)
+        if (index >= 0) {
+            binding.bibleVersionSpinner.setSelection(index)
+        }
+
+        binding.bibleVersionSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                val selectedValue = bibleValues[position]
+                if (selectedValue != prefs.getString(KEY_BIBLE_VERSION, "")) {
+                    prefs.edit { putString(KEY_BIBLE_VERSION, selectedValue) }
+                    BibelVersRepository.invalidateCache()
+                    bibleVersionChanged = true
+                    setResult(RESULT_OK, Intent().putExtra(EXTRA_BIBLE_CHANGED, true))
+                    Toast.makeText(applicationContext, getString(R.string.settings_bible_changed_toast), Toast.LENGTH_SHORT).show()
+                }
+            }
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
+
+        // App Version
+        try {
+            val pInfo = packageManager.getPackageInfo(packageName, 0)
+            val version = pInfo.versionName
+            binding.appVersionTextView.text = getString(R.string.settings_app_version_label, version)
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+        }
+
         setupThemeSelection()
 
     }
@@ -262,32 +305,37 @@ class SettingsActivity : BaseActivity() {
     }
 
     private fun setupThemeSelection() {
-        when (activeThemeMode) {
-            BaseActivity.THEME_MODE_LIGHT -> binding.themeLight.isChecked = true
-            BaseActivity.THEME_MODE_DARK -> binding.themeDark.isChecked = true
-            else -> binding.themeSystem.isChecked = true
-        }
+        val themeEntries = resources.getStringArray(R.array.theme_mode_entries)
+        val themeValues = resources.getStringArray(R.array.theme_mode_values)
+        val adapter = ArrayAdapter(this, R.layout.item_settings_spinner, themeEntries)
+        adapter.setDropDownViewResource(R.layout.item_settings_spinner_dropdown)
+        binding.themeSpinner.adapter = adapter
 
-        // Theme-Änderung Handler
-        binding.themeRadioGroup.setOnCheckedChangeListener { _, checkedId ->
-            val newTheme = when (checkedId) {
-                R.id.themeLight -> BaseActivity.THEME_MODE_LIGHT
-                R.id.themeDark -> BaseActivity.THEME_MODE_DARK
-                R.id.themeSystem -> BaseActivity.THEME_MODE_SYSTEM
-                else -> BaseActivity.THEME_MODE_SYSTEM
-            }
+        val initialIndex = themeValues.indexOf(activeThemeMode).takeIf { it >= 0 } ?: 0
+        suppressThemeSpinnerEvent = true
+        binding.themeSpinner.setSelection(initialIndex, false)
 
-            if (newTheme != activeThemeMode) {
-                prefs.edit { putString(BaseActivity.KEY_THEME_MODE, newTheme) }
-                activeThemeMode = newTheme
-                val mode = when (newTheme) {
-                    BaseActivity.THEME_MODE_LIGHT -> AppCompatDelegate.MODE_NIGHT_NO
-                    BaseActivity.THEME_MODE_DARK -> AppCompatDelegate.MODE_NIGHT_YES
-                    else -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+        binding.themeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                if (suppressThemeSpinnerEvent) {
+                    suppressThemeSpinnerEvent = false
+                    return
                 }
-                AppCompatDelegate.setDefaultNightMode(mode)
-                delegate.applyDayNight()
+                val newTheme = themeValues.getOrNull(position) ?: BaseActivity.THEME_MODE_SYSTEM
+                if (newTheme != activeThemeMode) {
+                    prefs.edit { putString(BaseActivity.KEY_THEME_MODE, newTheme) }
+                    activeThemeMode = newTheme
+                    val mode = when (newTheme) {
+                        BaseActivity.THEME_MODE_LIGHT -> AppCompatDelegate.MODE_NIGHT_NO
+                        BaseActivity.THEME_MODE_DARK -> AppCompatDelegate.MODE_NIGHT_YES
+                        else -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+                    }
+                    AppCompatDelegate.setDefaultNightMode(mode)
+                    delegate.applyDayNight()
+                }
             }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
         }
     }
 
@@ -302,6 +350,12 @@ class SettingsActivity : BaseActivity() {
         recordDefaultTopMargin(binding.randomVerseSwitch)
         recordDefaultTopMargin(binding.randomVerseHint)
         recordDefaultTopMargin(binding.themeLabel)
+        recordDefaultTopMargin(binding.themeSpinner)
+
+        recordDefaultTopMargin(binding.bibleVersionLabel)
+        recordDefaultTopMargin(binding.bibleVersionSpinner)
+        recordDefaultTopMargin(binding.appVersionTextView)
+    
         recordDefaultTopMargin(binding.dataSourceTextView)
         recordDefaultTopMargin(binding.projectInfoTextView)
         recordDefaultTopMargin(binding.streamSourceTextView)
@@ -339,11 +393,15 @@ class SettingsActivity : BaseActivity() {
             setTopMargin(binding.randomVerseSwitch, R.dimen.settings_compact_random_spacing)
             setTopMargin(binding.randomVerseHint, R.dimen.settings_compact_random_spacing)
             setTopMargin(binding.themeLabel, R.dimen.settings_compact_theme_spacing)
+            setTopMargin(binding.themeSpinner, R.dimen.settings_compact_section_spacing)
+
+            setTopMargin(binding.bibleVersionLabel, R.dimen.settings_compact_theme_spacing)
+            setTopMargin(binding.appVersionTextView, R.dimen.settings_compact_dedication_spacing)
+    
             setTopMargin(binding.dataSourceTextView, R.dimen.settings_compact_section_spacing)
             setTopMargin(binding.projectInfoTextView, R.dimen.settings_compact_link_spacing)
             setTopMargin(binding.streamSourceTextView, R.dimen.settings_compact_link_spacing)
             setTopMargin(binding.dedicationTextView, R.dimen.settings_compact_dedication_spacing)
-            applyRadioSpacing(compact = true)
         } else {
             restoreDefaultSpacing()
         }
@@ -372,11 +430,16 @@ class SettingsActivity : BaseActivity() {
         restoreTopMargin(binding.randomVerseSwitch)
         restoreTopMargin(binding.randomVerseHint)
         restoreTopMargin(binding.themeLabel)
+        restoreTopMargin(binding.themeSpinner)
+
+        restoreTopMargin(binding.bibleVersionLabel)
+        restoreTopMargin(binding.bibleVersionSpinner)
+        restoreTopMargin(binding.appVersionTextView)
+    
         restoreTopMargin(binding.dataSourceTextView)
         restoreTopMargin(binding.projectInfoTextView)
         restoreTopMargin(binding.streamSourceTextView)
         restoreTopMargin(binding.dedicationTextView)
-        applyRadioSpacing(compact = false)
         applyTextSizes(useCompact = false)
     }
 
@@ -402,30 +465,6 @@ class SettingsActivity : BaseActivity() {
 
     private fun setTextSize(view: TextView, sizePx: Float) {
         view.setTextSize(TypedValue.COMPLEX_UNIT_PX, sizePx)
-    }
-
-    private fun applyRadioSpacing(compact: Boolean) {
-        val spacing = resources.getDimensionPixelSize(
-            if (compact) R.dimen.settings_compact_radio_spacing else R.dimen.settings_regular_radio_spacing
-        )
-        val padding = resources.getDimensionPixelSize(
-            if (compact) R.dimen.settings_compact_radio_padding else R.dimen.settings_regular_radio_padding
-        )
-        for (i in 0 until binding.themeRadioGroup.childCount) {
-            val child = binding.themeRadioGroup.getChildAt(i)
-            val params = child.layoutParams as? LinearLayout.LayoutParams ?: continue
-            val topMargin = if (i == 0) 0 else spacing
-            if (params.topMargin != topMargin) {
-                params.topMargin = topMargin
-                child.layoutParams = params
-            }
-            if (child.paddingTop != padding || child.paddingBottom != padding) {
-                child.setPadding(child.paddingLeft, padding, child.paddingRight, padding)
-            }
-            if (child.minimumHeight != 0) {
-                child.minimumHeight = 0
-            }
-        }
     }
 
     private fun setTopMargin(view: View, @DimenRes dimenRes: Int) {
@@ -460,15 +499,13 @@ class SettingsActivity : BaseActivity() {
             this,
             if (fallbackActive) R.color.switch_thumb_red else R.color.switch_thumb_blue
         )
-        val radioTint = AppCompatResources.getColorStateList(
+        val accentTint = AppCompatResources.getColorStateList(
             this,
             if (fallbackActive) R.color.radio_tint_red else R.color.radio_tint_blue
         )
         binding.pushSwitch.trackTintList = trackTint
         binding.pushSwitch.thumbTintList = thumbTint
-        listOf(binding.themeSystem, binding.themeLight, binding.themeDark).forEach { radio ->
-            radio.buttonTintList = radioTint
-        }
+        ViewCompat.setBackgroundTintList(binding.themeSpinner, accentTint)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
@@ -514,14 +551,23 @@ class SettingsActivity : BaseActivity() {
         }
     }
 
+    override fun finish() {
+        if (bibleVersionChanged) {
+            setResult(RESULT_OK, Intent().putExtra(EXTRA_BIBLE_CHANGED, true))
+        }
+        super.finish()
+    }
+
     companion object {
         const val KEY_PUSH_NOTIFICATIONS = "pref_push_notifications"
         const val KEY_PUSH_TIME = "pref_push_time"
+        const val KEY_BIBLE_VERSION = "pref_bible_version"
         const val DEFAULT_TIME = "08:00"
         const val DEFAULT_TIME_HOUR = 8
         const val DEFAULT_TIME_MINUTE = 0
         private const val REQUEST_NOTIFICATIONS = 1001
         private const val SECRET_TAP_THRESHOLD = 7
+        const val EXTRA_BIBLE_CHANGED = "extra_bible_changed"
     }
 
     private fun updateTimeDisplay(time: String) {

@@ -29,6 +29,12 @@ Changelog (Version 2.2):
 • Die Quellenangaben bei den Versen sind jetzt interaktiv: Ein Tippen auf die Bibelstelle öffnet direkt den entsprechenden Text auf bibleserver.com in der SLT-Übersetzung.
 • Das visuelle Erscheinungsbild der Quellenangaben bleibt dabei unverändert dezent.
 
+Changelog (Version 2.3):
+• Drei Bibelübersetzungen zur Auswahl (Schlachter 1951, Luther 1912, Elberfelder 1871); Umschalten funktioniert ohne App-Neustart.
+• Einstellungsseite aufgeräumt: Theme-Auswahl nutzt nun ein Dropdown statt Radio-Buttons.
+• Screenshot-Script aktualisiert, damit licht/dunkel korrekt gesetzt wird; unnötige „Pause“-Hinweise entfernt.
+• Spinner-Styling in den Einstellungen folgt wieder den Systemfarben (hell/dunkel).
+
 Changelog (Version 1.9):
 • Lifecycle Komponenten aktualisiert, Mindestanforderung jetzt Android 6.0 (API 23).
 • Benachrichtigungen laufen zuverlässiger, da die App setExactAndAllowWhileIdle verwendet.

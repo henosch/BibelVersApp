@@ -7,10 +7,6 @@
     <dimen name="settings_compact_link_spacing">4dp</dimen>
     <dimen name="settings_compact_dedication_spacing">10dp</dimen>
     <dimen name="settings_compact_random_spacing">8dp</dimen>
-    <dimen name="settings_compact_radio_spacing">2dp</dimen>
-    <dimen name="settings_compact_radio_padding">2dp</dimen>
-    <dimen name="settings_regular_radio_spacing">4dp</dimen>
-    <dimen name="settings_regular_radio_padding">4dp</dimen>
     <dimen name="main_small_date_end_margin">16dp</dimen>
     <dimen name="main_small_date_horizontal_padding">12dp</dimen>
     <dimen name="main_author_small_screen_end_padding">20dp</dimen>
