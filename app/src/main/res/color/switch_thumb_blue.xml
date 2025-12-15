@@ -2,5 +2,5 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_enabled="false" android:color="#aa3a66c9" />
     <item android:state_checked="true" android:color="#3a66c9" />
-    <item android:color="#FFFFFFFF" />
+    <item android:color="@color/wall_navigation_bar_color" />
 </selector>

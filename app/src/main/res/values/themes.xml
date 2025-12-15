@@ -14,4 +14,10 @@
         <item name="android:windowBackground">@android:color/black</item>
         <item name="android:colorBackground">@android:color/black</item>
     </style>
+
+    <style name="Theme.Bibelvers.Dialog" parent="Theme.AppCompat.DayNight.Dialog.Alert">
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorAlertDialogListItem">@color/verse_text_color</item>
+        <item name="android:textColorPrimary">@color/verse_reference_color</item>
+    </style>
 </resources>

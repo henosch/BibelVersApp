@@ -41,11 +41,10 @@
                 android:id="@+id/pushSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
                 android:layout_marginTop="4dp"
                 android:text="@string/settings_push_label"
                 android:textColor="@color/verse_reference_color"
-                android:textStyle="bold"
+                app:switchPadding="16dp"
                 app:thumbTint="@color/switch_thumb_blue"
                 app:trackTint="@color/switch_track_blue"/>
 
@@ -65,8 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/settings_push_time_label"
-                android:textColor="@color/verse_reference_color"
-                android:textStyle="bold"/>
+                android:textColor="@color/verse_reference_color"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -104,7 +102,7 @@
                 android:text="@string/settings_random_verse_label"
                 android:textColor="@color/verse_reference_color"
                 android:textSize="16sp"
-                android:textStyle="bold"
+                app:switchPadding="16dp"
                 app:thumbTint="@color/switch_thumb_blue"
                 app:trackTint="@color/switch_track_blue"/>
 
@@ -123,8 +121,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
                 android:text="@string/settings_theme_label"
-                android:textColor="@color/verse_reference_color"
-                android:textStyle="bold"/>
+                android:textColor="@color/verse_reference_color"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -149,8 +146,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="28dp"
                 android:text="@string/settings_bible_version_label"
-                android:textColor="@color/verse_reference_color"
-                android:textStyle="bold"/>
+                android:textColor="@color/verse_reference_color"/>
 
             <TextView
                 android:layout_width="wrap_content"

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="settings_compact_content_padding">10dp</dimen>
-    <dimen name="settings_compact_push_top_margin">8dp</dimen>
+    <dimen name="settings_compact_push_top_margin">12dp</dimen>
     <dimen name="settings_compact_section_spacing">10dp</dimen>
     <dimen name="settings_compact_theme_spacing">10dp</dimen>
     <dimen name="settings_compact_link_spacing">4dp</dimen>
@@ -17,6 +17,7 @@
     <dimen name="settings_body_text_size_regular">13sp</dimen>
     <dimen name="settings_body_text_size_compact">11sp</dimen>
     <dimen name="settings_time_value_text_size">20sp</dimen>
+    <dimen name="settings_time_value_text_size_compact">16sp</dimen>
     <dimen name="dedication_text_size_large">16sp</dimen>
     <dimen name="dedication_text_size_small">14sp</dimen>
 </resources>

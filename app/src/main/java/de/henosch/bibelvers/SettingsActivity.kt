@@ -312,15 +312,10 @@ class SettingsActivity : BaseActivity() {
         binding.themeSpinner.adapter = adapter
 
         val initialIndex = themeValues.indexOf(activeThemeMode).takeIf { it >= 0 } ?: 0
-        suppressThemeSpinnerEvent = true
         binding.themeSpinner.setSelection(initialIndex, false)
 
         binding.themeSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-                if (suppressThemeSpinnerEvent) {
-                    suppressThemeSpinnerEvent = false
-                    return
-                }
                 val newTheme = themeValues.getOrNull(position) ?: BaseActivity.THEME_MODE_SYSTEM
                 if (newTheme != activeThemeMode) {
                     prefs.edit { putString(BaseActivity.KEY_THEME_MODE, newTheme) }
@@ -345,15 +340,9 @@ class SettingsActivity : BaseActivity() {
         defaultScrollPaddingStart = scrollView.paddingLeft
         defaultScrollPaddingEnd = scrollView.paddingRight
 
-        recordDefaultTopMargin(binding.pushSwitch)
+        // Only capture what we intend to modify in compact mode
         recordDefaultTopMargin(binding.timeLabel)
-        recordDefaultTopMargin(binding.randomVerseSwitch)
         recordDefaultTopMargin(binding.randomVerseHint)
-        recordDefaultTopMargin(binding.themeLabel)
-        recordDefaultTopMargin(binding.themeSpinner)
-
-        recordDefaultTopMargin(binding.bibleVersionLabel)
-        recordDefaultTopMargin(binding.bibleVersionSpinner)
         recordDefaultTopMargin(binding.appVersionTextView)
     
         recordDefaultTopMargin(binding.dataSourceTextView)
@@ -388,14 +377,15 @@ class SettingsActivity : BaseActivity() {
                 scrollView.paddingBottom
             )
 
-            setTopMargin(binding.pushSwitch, R.dimen.settings_compact_push_top_margin)
+            setTopMargin(binding.pushSwitch, R.dimen.settings_compact_random_spacing)
             setTopMargin(binding.timeLabel, R.dimen.settings_compact_section_spacing)
-            setTopMargin(binding.randomVerseSwitch, R.dimen.settings_compact_random_spacing)
+            setTopMargin(binding.randomVerseSwitch, R.dimen.settings_compact_section_spacing)
             setTopMargin(binding.randomVerseHint, R.dimen.settings_compact_random_spacing)
             setTopMargin(binding.themeLabel, R.dimen.settings_compact_theme_spacing)
             setTopMargin(binding.themeSpinner, R.dimen.settings_compact_section_spacing)
 
             setTopMargin(binding.bibleVersionLabel, R.dimen.settings_compact_theme_spacing)
+            setTopMargin(binding.bibleVersionSpinner, R.dimen.settings_compact_section_spacing)
             setTopMargin(binding.appVersionTextView, R.dimen.settings_compact_dedication_spacing)
     
             setTopMargin(binding.dataSourceTextView, R.dimen.settings_compact_section_spacing)
@@ -459,7 +449,9 @@ class SettingsActivity : BaseActivity() {
         setTextSize(binding.dataSourceTextView, bodySizePx)
         setTextSize(binding.projectInfoTextView, bodySizePx)
         setTextSize(binding.streamSourceTextView, bodySizePx)
-        val timeValueSizePx = resources.getDimension(R.dimen.settings_time_value_text_size)
+        val timeValueSizePx = resources.getDimension(
+            if (useCompact) R.dimen.settings_time_value_text_size_compact else R.dimen.settings_time_value_text_size
+        )
         setTextSize(binding.timeValue, timeValueSizePx)
     }
 

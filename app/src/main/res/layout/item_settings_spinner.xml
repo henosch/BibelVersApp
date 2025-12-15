@@ -8,5 +8,6 @@
     android:paddingEnd="12dp"
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
-    android:textColor="@color/verse_text_color"
-    android:textSize="16sp" />
+    android:textColor="@color/verse_reference_color"
+    android:textSize="16sp"
+    android:textStyle="bold" />

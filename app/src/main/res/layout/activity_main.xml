@@ -51,10 +51,10 @@
         android:paddingBottom="6dp"
         android:textColor="@color/date_text_color"
         android:textSize="18sp"
-        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="@id/settingsButton"
+        app:layout_constraintHorizontal_bias="0.0"
         tools:text="Montag, 20. Oktober 2025" />
 
     <TextView

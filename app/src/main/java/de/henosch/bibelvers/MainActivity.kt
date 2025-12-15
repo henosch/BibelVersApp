@@ -10,6 +10,7 @@ import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
@@ -199,6 +200,24 @@ class MainActivity : BaseActivity() {
             binding.dateTextView.layoutParams = params
         }
 
+        // Adjust settings button top margin to align with smaller text on small screens
+        val settingsParams = binding.settingsButton.layoutParams as? ViewGroup.MarginLayoutParams
+        if (settingsParams != null) {
+            val defaultTopMargin = (24 * resources.displayMetrics.density).toInt()
+            val smallScreenTopMargin = (20 * resources.displayMetrics.density).toInt()
+            val targetTopMargin = if (isSmallScreen) smallScreenTopMargin else defaultTopMargin
+            
+            if (settingsParams.topMargin != targetTopMargin) {
+                settingsParams.topMargin = targetTopMargin
+                binding.settingsButton.layoutParams = settingsParams
+            }
+        }
+        
+        // Scale settings button on small screens
+        val targetScale = if (isSmallScreen) 0.9f else 1.0f
+        binding.settingsButton.scaleX = targetScale
+        binding.settingsButton.scaleY = targetScale
+
         // Adjust text size and padding for small screens
         if (isSmallScreen) {
             binding.dateTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16f)
@@ -365,9 +384,10 @@ class MainActivity : BaseActivity() {
                     }
 
                     val labels = streams.map { it.label }.toTypedArray()
-                    AlertDialog.Builder(this@MainActivity)
+                    val adapter = ArrayAdapter(this@MainActivity, R.layout.item_settings_spinner_dropdown, labels)
+                    AlertDialog.Builder(this@MainActivity, R.style.Theme_Bibelvers_Dialog)
                         .setTitle(R.string.stream_picker_title)
-                        .setItems(labels) { _, index ->
+                        .setAdapter(adapter) { _, index ->
                             StreamActivity.start(this@MainActivity, streams[index])
                         }
                         .setNegativeButton(android.R.string.cancel, null)
