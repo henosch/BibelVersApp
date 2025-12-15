@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="settings_compact_content_padding">10dp</dimen>
-    <dimen name="settings_compact_push_top_margin">12dp</dimen>
     <dimen name="settings_compact_section_spacing">10dp</dimen>
     <dimen name="settings_compact_theme_spacing">10dp</dimen>
     <dimen name="settings_compact_link_spacing">4dp</dimen>
