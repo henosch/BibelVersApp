@@ -301,7 +301,13 @@ class MainActivity : BaseActivity() {
     private fun openBibleLink(reference: String) {
         try {
             val formattedRef = reference.replace(" ", "").replace(",", "%2C")
-            val url = "https://www.bibleserver.com/SLT/$formattedRef"
+            val bibleFile = prefs.getString(SettingsActivity.KEY_BIBLE_VERSION, "Schlachter51.xml")
+            val bibleCode = when (bibleFile) {
+                "ELB1871.xml" -> "ELB"
+                "LUT1912.xml" -> "LUT"
+                else -> "SLT"
+            }
+            val url = "https://www.bibleserver.com/$bibleCode/$formattedRef"
             val intent = Intent(Intent.ACTION_VIEW, url.toUri())
             startActivity(intent)
         } catch (e: Exception) {

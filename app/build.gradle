@@ -9,8 +9,8 @@ android {
         applicationId "de.henosch.bibelvers"
         minSdkVersion 23
         targetSdkVersion 36
-        versionCode 16
-        versionName "2.3"
+        versionCode 17
+        versionName "2.3.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
