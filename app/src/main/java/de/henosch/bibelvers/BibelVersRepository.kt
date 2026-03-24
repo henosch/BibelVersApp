@@ -23,6 +23,8 @@ object BibelVersRepository {
     private const val SESSION_PREFS = "bibelverse_session"
     private const val SESSION_CURRENT_PREFIX = "current_"
     private const val SESSION_NEXT_PREFIX = "next_"
+    private const val DAILY_RANDOM_PREFS = "bibelverse_daily_random"
+    private const val DAILY_RANDOM_KEY_PREFIX = "daily_"
     private const val USED_VERSES_PREFS = "bibelverse_used"
     private const val USED_VERSES_KEY_PREFIX = "used_"
     private val parserDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.GERMANY)
@@ -67,34 +69,25 @@ object BibelVersRepository {
     }
 
     private fun getRandomEntry(context: Context, entries: List<BibelVersData>, year: Int, formattedDate: String): BibelVersEntry? {
-        val usedVerses = UsedVersesTracker.getUsedVersesForYear(context, year)
-        val availableVerses = entries.indices.filter { it !in usedVerses }
-        
-        val entryIndex = if (availableVerses.isNotEmpty()) {
-            // Suche nach einer ausgewogenen Kombination für Random Mode
-            findBalancedVerse(entries, availableVerses)
-        } else {
-            // Alle Verse wurden bereits verwendet, zurücksetzen für das neue Jahr
-            if (Calendar.getInstance().get(Calendar.YEAR) > year) {
-                UsedVersesTracker.resetUsedVersesForYear(context, year)
-                findBalancedVerse(entries, entries.indices.toList())
-            } else {
-                // Innerhalb desselben Jahres: Verbleibende Verse verwenden
-                val remainingVerses = entries.indices.filter { it !in usedVerses.take(usedVerses.size - 1) }
-                findBalancedVerse(entries, remainingVerses)
-            }
+        DailyRandomStore.getStoredIndex(context, formattedDate, entries.size)?.let { storedIndex ->
+            return entryForIndex(entries, storedIndex, formattedDate)
         }
-        
+
+        val usedVerses = UsedVersesTracker.getUsedVersesForYear(context, year)
+        val entryIndex = selectRandomEntryIndex(
+            storedIndex = null,
+            size = entries.size,
+            usedVerses = usedVerses,
+            year = year,
+            currentYear = Calendar.getInstance().get(Calendar.YEAR)
+        ) { candidates ->
+            findBalancedVerse(entries, candidates)
+        }
+
+        DailyRandomStore.storeIndex(context, formattedDate, entryIndex)
         UsedVersesTracker.addUsedVerse(context, year, entryIndex)
-        
-        val verse = entries[entryIndex]
-        return BibelVersEntry(
-            formattedDate,
-            sanitize(verse.textAltesTestament),
-            verse.textAltesTestamentQuelle.trim(),
-            sanitize(verse.textNeuesTestament),
-            verse.textNeuesTestamentQuelle.trim()
-        )
+
+        return entryForIndex(entries, entryIndex, formattedDate)
     }
 
     fun formatDate(date: Date): String = parserDateFormat.format(date)
@@ -116,6 +109,11 @@ object BibelVersRepository {
             activeSessionOffsets.clear()
             activeSessionOffsets[dateKey] = offset
         }
+    }
+
+    fun refreshRandomVerseForDate(context: Context, date: Date) {
+        if (!SessionOffsetStore.isRandomModeEnabled(context)) return
+        DailyRandomStore.clearIndex(context, parserDateFormat.format(date))
     }
 
     private fun computeSessionOffset(
@@ -163,6 +161,31 @@ object BibelVersRepository {
             val prefs = context.getSharedPreferences(USED_VERSES_PREFS, Context.MODE_PRIVATE)
             prefs.edit {
                 remove(USED_VERSES_KEY_PREFIX + year)
+            }
+        }
+    }
+
+    private object DailyRandomStore {
+        fun getStoredIndex(context: Context, dateKey: String, size: Int): Int? {
+            if (size <= 0) return null
+            val prefs = context.getSharedPreferences(DAILY_RANDOM_PREFS, Context.MODE_PRIVATE)
+            val key = DAILY_RANDOM_KEY_PREFIX + dateKey
+            if (!prefs.contains(key)) return null
+            val index = prefs.getInt(key, -1)
+            return if (index in 0 until size) index else null
+        }
+
+        fun storeIndex(context: Context, dateKey: String, verseIndex: Int) {
+            val prefs = context.getSharedPreferences(DAILY_RANDOM_PREFS, Context.MODE_PRIVATE)
+            prefs.edit {
+                putInt(DAILY_RANDOM_KEY_PREFIX + dateKey, verseIndex)
+            }
+        }
+
+        fun clearIndex(context: Context, dateKey: String) {
+            val prefs = context.getSharedPreferences(DAILY_RANDOM_PREFS, Context.MODE_PRIVATE)
+            prefs.edit {
+                remove(DAILY_RANDOM_KEY_PREFIX + dateKey)
             }
         }
     }
@@ -240,6 +263,17 @@ object BibelVersRepository {
         text = text.replace(Regex("""/\s*[^/]+:/"""), "")
         text = text.replace(Regex("""\s{2,}"""), " ")
         return text.trim()
+    }
+
+    private fun entryForIndex(entries: List<BibelVersData>, entryIndex: Int, formattedDate: String): BibelVersEntry {
+        val verse = entries[entryIndex]
+        return BibelVersEntry(
+            formattedDate,
+            sanitize(verse.textAltesTestament),
+            verse.textAltesTestamentQuelle.trim(),
+            sanitize(verse.textNeuesTestament),
+            verse.textNeuesTestamentQuelle.trim()
+        )
     }
 
     private data class BibelVersData(
@@ -399,6 +433,29 @@ object BibelVersRepository {
         if (size <= 0) return 0
         val mod = value % size
         return if (mod >= 0) mod else mod + size
+    }
+
+    internal fun selectRandomEntryIndex(
+        storedIndex: Int?,
+        size: Int,
+        usedVerses: Set<Int>,
+        year: Int,
+        currentYear: Int,
+        selector: (List<Int>) -> Int
+    ): Int {
+        if (size <= 0) return 0
+        if (storedIndex != null && storedIndex in 0 until size) return storedIndex
+
+        val allIndices = (0 until size).toList()
+        val availableVerses = allIndices.filter { it !in usedVerses }
+
+        val candidates = when {
+            availableVerses.isNotEmpty() -> availableVerses
+            currentYear > year -> allIndices
+            else -> allIndices.filter { it !in usedVerses.take(usedVerses.size - 1) }
+        }
+
+        return selector(candidates.ifEmpty { allIndices })
     }
 
     /**

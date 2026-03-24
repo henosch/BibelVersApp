@@ -98,7 +98,11 @@ class MainActivity : BaseActivity() {
         }
 
         binding.dateTextView.setOnClickListener {
-            returnToToday()
+            if (isRandomModeEnabled()) {
+                refreshRandomVerseForToday()
+            } else {
+                returnToToday()
+            }
         }
 
         adjustDateChipSpacing()
@@ -265,11 +269,19 @@ class MainActivity : BaseActivity() {
     }
 
     private fun showPreviousDay() {
+        if (isRandomModeEnabled()) {
+            refreshRandomVerseForToday()
+            return
+        }
         currentDate.add(Calendar.DAY_OF_YEAR, -1)
         displayVerseForDate(currentDate.time)
     }
 
     private fun showNextDay() {
+        if (isRandomModeEnabled()) {
+            refreshRandomVerseForToday()
+            return
+        }
         currentDate.add(Calendar.DAY_OF_YEAR, 1)
         displayVerseForDate(currentDate.time)
     }
@@ -277,6 +289,13 @@ class MainActivity : BaseActivity() {
     private fun returnToToday() {
         currentDate.time = Date()
         displayVerseForDate(currentDate.time)
+    }
+
+    private fun refreshRandomVerseForToday() {
+        val today = Date()
+        currentDate.time = today
+        BibelVersRepository.refreshRandomVerseForDate(this, today)
+        displayVerseForDate(today)
     }
 
     private fun updateGreeting() {
@@ -316,6 +335,9 @@ class MainActivity : BaseActivity() {
             binding.zusatzVersTextView.setOnClickListener(null)
         }
     }
+
+    private fun isRandomModeEnabled(): Boolean =
+        prefs.getBoolean(BaseActivity.KEY_RANDOM_VERSE_MODE, true)
 
     private fun openBibleLink(reference: String) {
         try {
