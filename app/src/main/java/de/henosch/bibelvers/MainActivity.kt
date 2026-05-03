@@ -109,6 +109,14 @@ class MainActivity : BaseActivity() {
 
         displayVerseForDate(currentDate.time)
         updateGreeting()
+        ensureNotificationScheduled()
+    }
+
+    private fun ensureNotificationScheduled() {
+        if (!prefs.getBoolean(SettingsActivity.KEY_PUSH_NOTIFICATIONS, false)) return
+        val time = prefs.getString(SettingsActivity.KEY_PUSH_TIME, SettingsActivity.DEFAULT_TIME)
+            ?: SettingsActivity.DEFAULT_TIME
+        NotificationScheduler.scheduleDaily(applicationContext, time)
     }
 
     override fun onResume() {
