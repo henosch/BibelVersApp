@@ -39,6 +39,10 @@ Abhängigkeiten prüfen & Build starten:
 ./build.sh debug
 # oder Release-Bundle samt Signatur
 ./build.sh release
+# Debug-APK direkt aufs Privat-Testgerät installieren (mdns-Discovery via PRIVATE_IP_PREFIX)
+./build.sh install
+# Signierte Release-APK aufs Privat-Testgerät
+./build.sh install-release
 ```
 APK liegt danach unter `app/build/outputs/apk/debug/app-debug.apk`.
 

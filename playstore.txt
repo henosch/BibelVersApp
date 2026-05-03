@@ -18,12 +18,17 @@ Technische Hinweise:
 • Unterstützt Android 6.0 (API 23) bis Android 16+ (API 36)
 • Läuft auf Smartphones und Tablets (für das Portrait Format optimiert, Stream im Querformat)
 • Netzwerkzugriff ausschließlich über HTTPS, keine Drittanbieter SDKs
-• APK Größe ca. 1,2 MB
+• APK Größe ca. 1,7 MB
 
 ## Hinweis für Play Store Listing
 • Die verlinkte Datenschutzerklärung liegt auf https://henosch.github.io/BibelVersApp/datenschutz.html und entspricht bit identisch der Datei app/src/main/assets/datenschutz.html.
 • Im Repository ist Pages auf den Branch main und den Ordner docs eingestellt.
 • Nach Änderungen an docs/datenschutz.html den Pages Build erneut anstoßen, etwa mit gh api repos/henosch/BibelVersApp/pages/builds und anschließend den Status built abwarten.
+
+Changelog (Version 2.3.3):
+• Tägliche Erinnerung wieder zuverlässig: Nach Geräte-Neustart oder App-Update wird die Push-Benachrichtigung automatisch wieder eingeplant (BootReceiver).
+• Robustere Planung: Erinnerung wird zusätzlich beim App-Start defensiv neu gesetzt.
+• Aktualisierte Bibliotheken (Gradle 8.14.4, androidx.core-ktx 1.18.0); Lint sauber ohne Warnungen.
 
 Changelog (Version 2.2):
 • Die Quellenangaben bei den Versen sind jetzt interaktiv: Ein Tippen auf die Bibelstelle öffnet direkt den entsprechenden Text auf bibleserver.com in der SLT-Übersetzung.
