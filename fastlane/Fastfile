@@ -1,0 +1,196 @@
+default_platform(:android)
+
+PLAYSTORE_MOUNT     = "/Volumes/playstore"
+PLAYSTORE_KEY_DIR   = "#{PLAYSTORE_MOUNT}/upload-playstore-key"
+PLAYSTORE_SMB       = "smb://mike@192.168.11.150/playstore"
+KEYSTORE_FILE       = "#{PLAYSTORE_KEY_DIR}/upload-keystore-new.jks"
+KEY_ALIAS           = "bibelversapp-upload"
+CARMENTV_JSON       = "#{PLAYSTORE_KEY_DIR}/carmentv-b29f85067d53.json"
+
+def is_nas_mounted
+  File.directory?(PLAYSTORE_KEY_DIR) &&
+    File.file?(KEYSTORE_FILE) &&
+    File.file?(CARMENTV_JSON)
+end
+
+def ensure_nas_mount
+  return if is_nas_mounted
+
+  UI.message("Mounte #{PLAYSTORE_SMB}...")
+  system("open '#{PLAYSTORE_SMB}' >/dev/null 2>&1")
+  30.times do
+    break if is_nas_mounted
+    sleep(2)
+  end
+  UI.user_error!("NAS-Mount fehlgeschlagen: #{PLAYSTORE_SMB}") unless is_nas_mounted
+  UI.success("✓ NAS gemountet: #{PLAYSTORE_MOUNT}")
+end
+
+def keystore_pass
+  pass = `grep "Store Password:" "#{PLAYSTORE_KEY_DIR}/credentials.txt" | cut -d' ' -f3-`.strip
+  UI.user_error!("Konnte Store Password nicht aus credentials.txt lesen") if pass.empty?
+  pass
+end
+
+platform :android do
+
+  before_all do
+    ensure_nas_mount
+  end
+
+  # ============================================================
+  # BUILD
+  # ============================================================
+
+  desc "Build Debug APK"
+  lane :build_debug do
+    gradle(task: "assembleDebug")
+  end
+
+  desc "Build signiertes Release AAB"
+  lane :build_release do
+    pass = keystore_pass
+    gradle(
+      task: "bundle",
+      build_type: "Release",
+      properties: {
+        "android.injected.signing.store.file"     => KEYSTORE_FILE,
+        "android.injected.signing.store.password" => pass,
+        "android.injected.signing.key.alias"      => KEY_ALIAS,
+        "android.injected.signing.key.password"   => pass,
+      }
+    )
+  end
+
+  # ============================================================
+  # DEPLOY LANES
+  # ============================================================
+
+  desc "Deploy to Internal Track"
+  lane :deploy_internal do
+    build_release
+    upload_to_play_store(
+      track: "internal",
+      release_status: "completed",
+      metadata_path: "./fastlane/metadata/android",
+      aab: lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH]
+    )
+  end
+
+  desc "Deploy to Closed Testing (Alpha Track)"
+  lane :deploy_alpha do
+    build_release
+    upload_to_play_store(
+      track: "alpha",
+      release_status: "completed",
+      metadata_path: "./fastlane/metadata/android",
+      aab: lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH]
+    )
+  end
+
+  desc "Deploy to Production (als Draft)"
+  lane :deploy_production do
+    build_release
+    upload_to_play_store(
+      track: "production",
+      release_status: "draft",
+      metadata_path: "./fastlane/metadata/android",
+      aab: lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH]
+    )
+  end
+
+  desc "Deploy to Production (Staged Rollout)"
+  lane :deploy_staged do |options|
+    rollout = options[:rollout] || "0.1"
+    build_release
+    upload_to_play_store(
+      track: "production",
+      release_status: "inProgress",
+      user_fraction: rollout,
+      metadata_path: "./fastlane/metadata/android",
+      aab: lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH]
+    )
+  end
+
+  # ============================================================
+  # PROMOTION (ohne neuen Build)
+  # ============================================================
+
+  desc "Promote Internal zu Alpha"
+  lane :promote_internal_to_alpha do
+    upload_to_play_store(
+      track: "internal",
+      track_promote_to: "alpha",
+      skip_upload_changelogs: false
+    )
+  end
+
+  desc "Promote Alpha zu Production"
+  lane :promote_alpha_to_production do
+    upload_to_play_store(
+      track: "alpha",
+      track_promote_to: "production",
+      release_status: "draft"
+    )
+  end
+
+  # ============================================================
+  # METADATEN & SCREENSHOTS
+  # ============================================================
+
+  desc "Nur Metadaten hochladen"
+  lane :upload_metadata do
+    upload_to_play_store(
+      skip_upload_apk: true,
+      skip_upload_aab: true,
+      skip_upload_changelogs: true,
+      metadata_path: "./fastlane/metadata/android"
+    )
+  end
+
+  # ============================================================
+  # TEST & VALIDATION
+  # ============================================================
+
+  desc "Lint Checks ausführen"
+  lane :lint do
+    gradle(task: "lint")
+  end
+
+  desc "Unit Tests ausführen"
+  lane :test do
+    gradle(task: "testDebugUnitTest")
+  end
+
+  desc "Alles validieren: Lint + Tests + Debug Build"
+  lane :validate do
+    lint
+    test
+    build_debug
+  end
+
+  # ============================================================
+  # KOMBINIERTE WORKFLOWS
+  # ============================================================
+
+  desc "Full CI: Validieren -> Build Release -> Deploy Internal"
+  lane :ci_internal do
+    validate
+    deploy_internal
+  end
+
+  desc "Full CI: Validieren -> Build Release -> Deploy Production"
+  lane :ci_production do
+    validate
+    deploy_production
+  end
+
+  after_all do |lane|
+    UI.success("✅ Lane '#{lane}' erfolgreich abgeschlossen!")
+  end
+
+  error do |lane, exception|
+    UI.error("❌ Lane '#{lane}' fehlgeschlagen: #{exception.message}")
+  end
+
+end
