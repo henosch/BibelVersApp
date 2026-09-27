@@ -1,0 +1,74 @@
+Täglichen Bibelvers lesen und Livestreams erleben
+
+BibelVers schenkt dir jeden Tag einen neuen geistlichen Impuls und verbindet dich direkt mit Jerusalem.
+
+Entdecke über 3.000 sorgfältig ausgewählte Bibelverse aus Altem und Neuem Testament, die jedes Jahr neu zu harmonischen Tageslosungen kombiniert werden. Diese App präsentiert dir Gottes Wort einfach, zugänglich und schön, ganz ohne Ablenkung.
+
+SO FUNKTIONIERT DIE APP:
+• <b>Wischen:</b> Blättere durch intuitives Wischen nach links oder rechts zwischen den Tagen. Schau zurück oder blicke nach vorne.
+• <b>Heute:</b> Ein Tipp auf das Datum bringt dich sofort zum aktuellen Tagesvers zurück.
+• <b>Zufalls-Modus:</b> Aktiviere "Neuer Vers bei Start", um durch Tippen auf das Datum jederzeit einen neuen Impuls aus dem großen Fundus zu laden.
+• <b>Vertiefung:</b> Ein Tipp auf die Bibelstelle öffnet den Vers direkt auf bibleserver.com in deiner gewählten Übersetzung, damit du den Kontext lesen kannst.
+
+EIN BLICK NACH JERUSALEM:
+• <b>Livestreams:</b> Erlebe die Klagemauer (Kotel) live auf deinem Gerät. Wähle aus verschiedenen Kameraperspektiven und fühle dich verbunden mit dem Herzen Jerusalems.
+• <b>Schabbat-Modus:</b> Die App respektiert die Ruhezeiten. Während des Schabbats pausieren die Livestreams automatisch.
+
+DEINE PERSÖNLICHE BIBEL-APP:
+• <b>Übersetzung wählen:</b> Wähle deine bevorzugte Bibelübersetzung:
+  - Schlachter 1951
+  - Luther 1912
+  - Elberfelder 1871
+• <b>Design:</b> Passe das Erscheinungsbild an: Hell, Dunkel oder automatisch nach System-Einstellung.
+• <b>Erinnerung:</b> Erhalte eine tägliche Push-Benachrichtigung zur Wunschzeit, um deinen Vers nicht zu verpassen.
+
+HAUPTFEATURES:
+• <b>Keine Duplikate:</b> Einzigartige Vers-Kombinationen für jeden Tag des Jahres.
+• <b>Offline First:</b> Alle Verse sind lokal in der App gespeichert – du benötigst kein Internet zum Lesen.
+• <b>100% Privat:</b> Deine geistliche Reise ist privat. Keine Werbung, kein Tracking, keine Benutzerkonten, keine Datenübertragung.
+
+PERFEKT FÜR DICH WENN:
+• Du tägliche, gehaltvolle Impulse suchst.
+• Du eine ruhige, werbefreie Leseumgebung schätzt.
+• Du verschiedene klassische Bibelübersetzungen vergleichst.
+• Du eine schnelle, zuverlässige Offline-App willst.
+
+Technische Highlights:
+• Unterstützt Android 6.0 bis Android 16+
+• Modernes Design für Smartphones & Tablets
+• HTTPS-Verschlüsselung für Streams und Links
+• Extrem batterieschonend und speichereffizient
+
+Lade dir jetzt deinen täglichen Begleiter herunter!
+
+Changelog (Version 2.3.3):
+• Tägliche Erinnerung wieder zuverlässig: Nach Geräte-Neustart oder App-Update wird die Push-Benachrichtigung automatisch wieder eingeplant (BootReceiver).
+• Robustere Planung: Erinnerung wird zusätzlich beim App-Start defensiv neu gesetzt.
+• Aktualisierte Bibliotheken (Gradle 8.14.4, androidx.core-ktx 1.18.0); Lint sauber ohne Warnungen.
+
+Changelog (Version 2.3):
+• Drei Bibelübersetzungen zur Auswahl (Schlachter 1951, Luther 1912, Elberfelder 1871); Umschalten funktioniert ohne App-Neustart.
+• Einstellungsseite aufgeräumt: Theme-Auswahl nutzt nun ein Dropdown statt Radio-Buttons.
+• Screenshot-Script aktualisiert, damit licht/dunkel korrekt gesetzt wird; unnötige Pause-Hinweise entfernt.
+• Spinner-Styling in den Einstellungen folgt wieder den Systemfarben (hell/dunkel).
+
+Changelog (Version 2.2):
+• Tippbare Quellenangaben öffnen den Verskontext direkt im Browser.
+
+Changelog (Version 2.1):
+• Sequential Mode: Optimierte Jahresliste mit Balance.
+• Random Mode: Intelligente AT/NT-Balance + Duplikats-Vermeidung.
+• Performance-Optimierung.
+
+Changelog (Version 2.0):
+• Rechtschreibfehler korrigiert & Vers-Pool auf 3.520 erhöht.
+
+Frühere Versionen:
+• 1.9: Lifecycle Komponenten aktualisiert
+• 1.8: Stabile Tageshistorie
+• 1.7: Lesbarkeit verbessert
+• 1.6: Fehlerbehebungen
+• 1.5: Schabbat-Sperre & Datenschutzerklärung
+• 1.4: Verse vollständig lokal
+• 1.3: AppCompat Umstellung
+• 1.1: Stream-Bedienung & Dark Mode

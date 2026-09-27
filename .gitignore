@@ -17,3 +17,10 @@ command_reference.txt
 /scripts/build_bibelverse_xml.py
 /scripts/capture_screenshots.sh
 /scripts/*
+# Binaries
+*.apk
+*.aab
+# fastlane
+/fastlane/report.xml
+/fastlane/README.md
+/fastlane/metadata/**/images/
