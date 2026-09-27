@@ -20,7 +20,7 @@
     <string name="settings_push_permission_denied">Benachrichtigungen wurden nicht erlaubt.</string>
     <string name="notification_channel_name">Bibelvers des Tages</string>
     <string name="notification_channel_description">Benachrichtigungen für den täglichen Bibelvers</string>
-    <string name="notification_title">Bibelvers des Tages</string>
+    <string name="notification_title">@string/notification_channel_name</string>
     <string name="notification_message">Der heutige Bibelvers ist bereit. Öffne die App für mehr.</string>
     <string name="stream_picker_title">Kotel-Livestream auswählen</string>
     <string name="stream_picker_error">Kein Livestream verfügbar.</string>

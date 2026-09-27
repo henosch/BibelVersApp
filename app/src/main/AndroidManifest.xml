@@ -23,8 +23,7 @@
 
         <receiver
             android:name=".BootReceiver"
-            android:exported="true"
-            tools:ignore="ExportedReceiver">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
@@ -33,6 +32,8 @@
             </intent-filter>
         </receiver>
 
+        <!-- Hochformat-Sperre: Layout ist nur fürs Hochformat gebaut. Android 17
+             ignoriert sie auf großen Bildschirmen (sw>=600dp), auf Handys greift sie. -->
         <activity
             android:name=".SettingsActivity"
             android:exported="false"
@@ -42,8 +43,7 @@
 
         <activity
             android:name=".DatenschutzActivity"
-            android:exported="false"
-            tools:ignore="LockedOrientationActivity" />
+            android:exported="false" />
 
         <activity
             android:name=".StreamActivity"
@@ -51,6 +51,8 @@
             android:exported="false"
             android:theme="@style/Theme.Bibelvers.Stream" />
 
+        <!-- Hochformat-Sperre: Layout ist nur fürs Hochformat gebaut. Android 17
+             ignoriert sie auf großen Bildschirmen (sw>=600dp), auf Handys greift sie. -->
         <activity
             android:name=".MainActivity"
             android:exported="true"

@@ -276,7 +276,7 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    private fun showPreviousDay() {
+    internal fun showPreviousDay() {
         if (isRandomModeEnabled()) {
             refreshRandomVerseForToday()
             return
@@ -285,7 +285,7 @@ class MainActivity : BaseActivity() {
         displayVerseForDate(currentDate.time)
     }
 
-    private fun showNextDay() {
+    internal fun showNextDay() {
         if (isRandomModeEnabled()) {
             refreshRandomVerseForToday()
             return

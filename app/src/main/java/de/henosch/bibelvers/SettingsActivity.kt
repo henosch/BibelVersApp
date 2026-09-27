@@ -49,7 +49,7 @@ class SettingsActivity : BaseActivity() {
 
     private lateinit var binding: ActivitySettingsBinding
     private lateinit var pushChangeListener: CompoundButton.OnCheckedChangeListener
-    private val prefs by lazy { getSharedPreferences(BaseActivity.PREFS_FILE, MODE_PRIVATE) }
+    internal val prefs by lazy { getSharedPreferences(BaseActivity.PREFS_FILE, MODE_PRIVATE) }
     private var activeThemeMode: String = BaseActivity.THEME_MODE_SYSTEM
     private val defaultTopMargins = mutableMapOf<Int, Int>()
     private var defaultScrollPaddingStart = 0
@@ -478,7 +478,7 @@ class SettingsActivity : BaseActivity() {
     }
 
     private fun updateAccentColors() {
-        val fallbackActive = BibelVersRepository.isFallbackActive(this)
+        val fallbackActive = BibelVersRepository.isFallbackActive()
         applyAccentColors(fallbackActive)
     }
 

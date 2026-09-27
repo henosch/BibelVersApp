@@ -28,6 +28,7 @@
 
     <!-- Brick pattern overlay -->
     <item
+        android:height="220dp"
         android:gravity="bottom"
         android:drawable="@drawable/wall_pattern" />
 

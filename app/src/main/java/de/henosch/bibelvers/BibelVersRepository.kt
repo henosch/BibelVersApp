@@ -92,7 +92,7 @@ object BibelVersRepository {
 
     fun formatDate(date: Date): String = parserDateFormat.format(date)
 
-    fun isFallbackActive(@Suppress("UNUSED_PARAMETER") context: Context): Boolean = false
+    fun isFallbackActive(): Boolean = false
 
     fun beginTodaySession(context: Context) {
         val entries = loadEntries(context)
@@ -194,7 +194,7 @@ object BibelVersRepository {
         cachedEntries = null
     }
 
-    private fun loadEntries(context: Context): List<BibelVersData> {
+    internal fun loadEntries(context: Context): List<BibelVersData> {
         val prefs = context.getSharedPreferences(PREFS_FILE, Context.MODE_PRIVATE)
         val selectedBible = prefs.getString(KEY_BIBLE_VERSION, "Schlachter51.xml") ?: "Schlachter51.xml"
 
@@ -276,7 +276,7 @@ object BibelVersRepository {
         )
     }
 
-    private data class BibelVersData(
+    internal data class BibelVersData(
         val textAltesTestament: String,
         val textAltesTestamentQuelle: String,
         val textNeuesTestament: String,
@@ -359,7 +359,9 @@ object BibelVersRepository {
                 }
             }
             
-            Log.d(TAG, "Balance-Verteilung: Exzellent=${excellentBalance.size}, Gut=${goodBalance.size}, Akzeptabel=${acceptableBalance.size}, Schlecht=${poorBalance.size}")
+            if (BuildConfig.DEBUG) {
+                Log.d(TAG, "Balance-Verteilung: Exzellent=${excellentBalance.size}, Gut=${goodBalance.size}, Akzeptabel=${acceptableBalance.size}, Schlecht=${poorBalance.size}")
+            }
             
             // Erstelle eine gemischte Reihenfolge mit guter Verteilung
             val result = mutableListOf<Int>()
@@ -389,7 +391,9 @@ object BibelVersRepository {
                 }
             }
             
-            Log.d(TAG, "Optimierte Reihenfolge erstellt: ${result.size} Verse mit Balance-Optimierung")
+            if (BuildConfig.DEBUG) {
+                Log.d(TAG, "Optimierte Reihenfolge erstellt: ${result.size} Verse mit Balance-Optimierung")
+            }
             return result.toIntArray()
         }
     }
@@ -429,7 +433,7 @@ object BibelVersRepository {
         }
     }
 
-    private fun positiveModulo(value: Int, size: Int): Int {
+    internal fun positiveModulo(value: Int, size: Int): Int {
         if (size <= 0) return 0
         val mod = value % size
         return if (mod >= 0) mod else mod + size
@@ -566,7 +570,7 @@ object BibelVersRepository {
      * Prüft, ob ein Vers-Paar akzeptabel ist (nicht optimal, aber okay)
      * Gibt eine Punktzahl für die Qualität der Kombination
      */
-    private fun getCombinationScore(verse: BibelVersData): Int {
+    internal fun getCombinationScore(verse: BibelVersData): Int {
         val atLen = verse.textAltesTestament.length
         val ntLen = verse.textNeuesTestament.length
         val totalLen = atLen + ntLen

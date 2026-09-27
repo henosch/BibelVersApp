@@ -25,7 +25,9 @@ object NotificationScheduler {
         alarmManager.cancel(pendingIntent)
 
         val triggerTime = computeTriggerTime(hour, minute)
-        Log.d(TAG, "Scheduling alarm for $hour:$minute at $triggerTime")
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "Scheduling alarm for $hour:$minute at $triggerTime")
+        }
 
         val canScheduleExact = Build.VERSION.SDK_INT < Build.VERSION_CODES.S || alarmManager.canScheduleExactAlarms()
 

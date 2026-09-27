@@ -59,7 +59,9 @@ object KotelStreamProvider {
             connection.disconnect()
             firstLine?.startsWith("#EXTM3U") == true
         } catch (e: Exception) {
-            Log.d(TAG, "Stream check failed for $urlString", e)
+            if (BuildConfig.DEBUG) {
+                Log.d(TAG, "Stream check failed for $urlString", e)
+            }
             false
         }
     }

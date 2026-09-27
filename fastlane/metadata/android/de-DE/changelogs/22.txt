@@ -1,0 +1,3 @@
+Optimiert für Android 17.
+• Aktualisierte Bibliotheken und Build-Werkzeuge
+• Kleine Verbesserungen für Stabilität und Leistung

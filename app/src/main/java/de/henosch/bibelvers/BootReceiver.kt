@@ -16,7 +16,9 @@ class BootReceiver : BroadcastReceiver() {
         }
         val time = prefs.getString(SettingsActivity.KEY_PUSH_TIME, SettingsActivity.DEFAULT_TIME)
             ?: SettingsActivity.DEFAULT_TIME
-        Log.d(TAG, "Boot/update broadcast $action – rescheduling daily verse for $time")
+        if (BuildConfig.DEBUG) {
+            Log.d(TAG, "Boot/update broadcast $action – rescheduling daily verse for $time")
+        }
         NotificationScheduler.scheduleDaily(appContext, time)
     }
 

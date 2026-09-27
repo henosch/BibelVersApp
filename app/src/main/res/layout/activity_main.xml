@@ -40,6 +40,7 @@
 
     <TextView
         android:id="@+id/dateTextView"
+        android:textIsSelectable="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -59,6 +60,7 @@
 
     <TextView
         android:id="@+id/bibelversTextView"
+        android:textIsSelectable="false"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -71,6 +73,7 @@
 
     <TextView
         android:id="@+id/bibelversVersTextView"
+        android:textIsSelectable="false"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -88,6 +91,7 @@
 
     <TextView
         android:id="@+id/zusatzTextView"
+        android:textIsSelectable="false"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -99,6 +103,7 @@
 
     <TextView
         android:id="@+id/zusatzVersTextView"
+        android:textIsSelectable="false"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
