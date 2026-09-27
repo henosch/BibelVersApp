@@ -23,4 +23,3 @@ command_reference.txt
 # fastlane
 /fastlane/report.xml
 /fastlane/README.md
-/fastlane/metadata/**/images/
