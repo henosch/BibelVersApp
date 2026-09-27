@@ -73,7 +73,8 @@ platform :android do
       track: "internal",
       release_status: "completed",
       metadata_path: "./fastlane/metadata/android",
-      aab: lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH]
+      aab: lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH],
+      skip_upload_apk: true
     )
   end
 
@@ -84,7 +85,8 @@ platform :android do
       track: "alpha",
       release_status: "completed",
       metadata_path: "./fastlane/metadata/android",
-      aab: lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH]
+      aab: lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH],
+      skip_upload_apk: true
     )
   end
 
@@ -95,7 +97,8 @@ platform :android do
       track: "production",
       release_status: "draft",
       metadata_path: "./fastlane/metadata/android",
-      aab: lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH]
+      aab: lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH],
+      skip_upload_apk: true
     )
   end
 
@@ -108,7 +111,8 @@ platform :android do
       release_status: "inProgress",
       user_fraction: rollout,
       metadata_path: "./fastlane/metadata/android",
-      aab: lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH]
+      aab: lane_context[SharedValues::GRADLE_AAB_OUTPUT_PATH],
+      skip_upload_apk: true
     )
   end
 
